@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+            android:id="@+id/action_main"
+            android:title="首页"
+            android:icon="@drawable/selector_main_menu_main"/>
+    <item
+            android:id="@+id/action_exercise"
+            android:title="练习"
+            android:icon="@drawable/selector_main_menu_exercise"
+            />
+    <!--<item-->
+            <!--android:id="@+id/action_examination"-->
+            <!--android:title="考试"-->
+            <!--android:icon="@drawable/selector_main_menu_examination"/>-->
+    <item
+            android:id="@+id/action_mine"
+            android:title="我的"
+            android:icon="@drawable/selector_main_menu_mine"/>
+
+</menu>
