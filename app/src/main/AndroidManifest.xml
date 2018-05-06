@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
+            android:name=".MyApplication"
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
@@ -27,6 +28,21 @@
         </activity>
         <activity android:name=".ui.activity.RegisterActivity"/>
         <activity android:name=".ui.activity.BindPhoneActivity"/>
+
+        <!-- 考试结果 -->
+        <activity android:name=".ui.activity.ExaminationResultActivity"/>
+
+        <!-- 基本信息 -->
+        <activity android:name=".ui.activity.BasicInformationActivity"/>
+
+        <!-- 消息中心 -->
+        <activity android:name=".ui.activity.MessageCenterActivity"/>
+
+        <!-- 设置 -->
+        <activity android:name=".ui.activity.SettingActivity"/>
+
+        <!-- 充值记录 -->
+        <activity android:name=".ui.activity.RechargeRecordActivity"/>
 
     </application>
 

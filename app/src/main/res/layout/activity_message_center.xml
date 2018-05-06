@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+    <include
+            android:id="@+id/layout_title"
+            layout="@layout/layout_title"
+            />
+
+
+    <TextView
+            android:id="@+id/tv_system_message"
+            android:layout_width="0dp"
+            android:layout_height="32dp"
+            android:layout_marginLeft="19dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/tv_buy_notice"
+            app:layout_constraintTop_toBottomOf="@id/layout_title"
+            app:layout_constraintBottom_toTopOf="@id/srl_message_center"
+            android:gravity="center"
+            android:background="@drawable/shape_message_center_system_message_bg"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:text="系统消息"/>
+
+    <TextView
+            android:id="@+id/tv_buy_notice"
+            android:layout_width="0dp"
+            android:layout_height="32dp"
+            android:layout_marginLeft="9dp"
+            android:layout_marginRight="9dp"
+            app:layout_constraintLeft_toRightOf="@id/tv_system_message"
+            app:layout_constraintRight_toLeftOf="@id/tv_maturity_notice"
+            app:layout_constraintTop_toTopOf="@id/tv_system_message"
+            android:gravity="center"
+            android:background="@drawable/shape_message_center_buy_notice_bg"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:text="购买通知"/>
+
+    <TextView
+            android:id="@+id/tv_maturity_notice"
+            android:layout_width="0dp"
+            android:layout_height="36dp"
+            android:layout_marginRight="19dp"
+            app:layout_constraintLeft_toRightOf="@id/tv_buy_notice"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_system_message"
+            android:gravity="center"
+            android:background="@drawable/shape_message_center_maturity_notice_bg"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:text="到期通知"/>
+
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            app:layout_constraintTop_toTopOf="@id/srl_message_center"
+            android:background="@color/itemDividerColor"/>
+
+
+    <com.lz.baselibrary.view.MySwipeRefreshLayout
+            android:id="@+id/srl_message_center"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_system_message"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_message_center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+    </com.lz.baselibrary.view.MySwipeRefreshLayout>
+
+
+</android.support.constraint.ConstraintLayout>

@@ -13,5 +13,14 @@
     <color name="transparency">#00000000</color>
     <color name="blackText">#707070</color>
     <color name="mainMenuTextNormal">#bfbfbf</color>
+    
+    <!-- RecyclerView 分割线颜色 -->
+    <color name="itemDividerColor">#ebebeb</color>
+    
+    
+    <!-- 消息颜色 -->
+    <color name="systemMessageColor">#509ffb</color>
+    <color name="buyNoticeColor">#ff569a</color>
+    <color name="maturityNoticeColor">#fdaa60</color>
 
 </resources>

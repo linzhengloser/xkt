@@ -5,6 +5,11 @@ import com.lz.baselibrary.base.LibraryBaseListActivity
 /**
  * @author linzheng
  */
-class BaseListActivity : LibraryBaseListActivity(){
+open class BaseListActivity : LibraryBaseListActivity() {
+
+
+    //------------------------ 添加测试数据
+
+
 
 }

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+    <include
+            android:id="@+id/layout_title"
+            layout="@layout/layout_title"
+            />
+
+    <ImageView
+            android:id="@+id/iv_icon"
+            android:layout_width="78dp"
+            android:layout_height="78dp"
+            android:layout_marginTop="33dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_title"
+            android:src="@drawable/examination_result_success"
+            />
+
+    <TextView
+            android:id="@+id/tv_fraction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_icon"
+            android:textSize="20sp"
+            android:textColor="#262a3b"
+            android:text="恭喜100分，考试完成！"/>
+
+
+    <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_fraction"
+            android:textSize="12sp"
+            android:textColor="#707070"
+            android:text="总共100题，对100题，错0题\n考试时长30分钟，实用时长20分钟"/>
+
+    <TextView
+            android:id="@+id/tv_again"
+            android:layout_width="300dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="28dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_time"
+            android:gravity="center"
+            android:background="@drawable/shape_examination_result_btn"
+            android:textSize="16sp"
+            android:textColor="@color/bluePrimary"
+            android:text="再考一次"
+            />
+
+    <TextView
+            android:id="@+id/tv_all_answer"
+            android:layout_width="300dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="14dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_again"
+            android:gravity="center"
+            android:background="@drawable/shape_examination_result_btn"
+            android:textSize="16sp"
+            android:textColor="@color/bluePrimary"
+            android:text="全部答案"
+            />
+
+    <TextView
+            android:id="@+id/tv_wrong_question_answer"
+            android:layout_width="300dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="14dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_all_answer"
+            android:gravity="center"
+            android:background="@drawable/shape_examination_result_btn"
+            android:textSize="16sp"
+            android:textColor="@color/bluePrimary"
+            android:text="错题答案"
+            />
+
+    <TextView
+            android:id="@+id/tv_exercise_well"
+            android:layout_width="300dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="14dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_all_answer"
+            android:gravity="center"
+            android:background="@drawable/shape_examination_result_btn"
+            android:textSize="16sp"
+            android:textColor="@color/bluePrimary"
+            android:text="再好好练习"
+            />
+
+
+    <TextView
+            android:id="@+id/tv_section_directory"
+            android:layout_width="300dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="14dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_exercise_well"
+            android:gravity="center"
+            android:background="@drawable/shape_examination_result_blue_btn"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:text="错题答案"
+            />
+
+
+</android.support.constraint.ConstraintLayout>
