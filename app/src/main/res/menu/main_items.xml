@@ -10,10 +10,10 @@
             android:title="练习"
             android:icon="@drawable/selector_main_menu_exercise"
             />
-    <!--<item-->
-            <!--android:id="@+id/action_examination"-->
-            <!--android:title="考试"-->
-            <!--android:icon="@drawable/selector_main_menu_examination"/>-->
+    <item
+            android:id="@+id/action_examination"
+            android:title="考试"
+            android:icon="@drawable/selector_main_menu_examination"/>
     <item
             android:id="@+id/action_mine"
             android:title="我的"

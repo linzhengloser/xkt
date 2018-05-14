@@ -44,6 +44,12 @@
         <!-- 充值记录 -->
         <activity android:name=".ui.activity.RechargeRecordActivity"/>
 
+        <!-- 资讯列表 -->
+        <activity android:name=".ui.activity.InformationActivity"/>
+
+        <!-- 资讯详情 -->
+        <activity android:name=".ui.activity.InformationDetailActivity"/>
+
     </application>
 
 </manifest>

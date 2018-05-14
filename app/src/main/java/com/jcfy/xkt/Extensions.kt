@@ -1,6 +1,7 @@
 package com.jcfy.xkt
 
 import android.app.Activity
+import android.content.Context
 import android.support.v4.content.ContextCompat
 import android.view.View
 import com.lz.baselibrary.LibraryApplication
@@ -29,22 +30,23 @@ inline fun Activity.goneBack() {
 /**
  * 像素转 DP
  */
-inline fun Int.dp(): Int
-        = (LibraryApplication.getInstance().resources.displayMetrics.density * this).toInt()
+inline fun Int.dp(): Int = (LibraryApplication.getInstance().resources.displayMetrics.density * this).toInt()
 
 /**
  * Activity 获取 Color
  */
-inline fun Activity.getResourceColor(color: Int) = ContextCompat.getColor(this,color)
+inline fun Context.getResourceColor(color: Int) = ContextCompat.getColor(this, color)
 
 
 /**
  * 添加测试数据
  */
-fun Items.addTestData(clazz: Class<out Any>, itemCount: Int = 20){
+fun Items.addTestData(clazz: Class<out Any>, itemCount: Int = 20) {
     val list = mutableListOf<Any>()
     repeat(itemCount) {
         list.add(clazz.newInstance())
     }
     addAll(list)
 }
+
+inline fun View.bindBoolean2Visibility(isVisibility: Boolean) = if (isVisibility) visibility = View.VISIBLE else View.GONE

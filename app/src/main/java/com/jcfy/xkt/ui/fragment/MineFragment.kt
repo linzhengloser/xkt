@@ -14,6 +14,8 @@ import com.jcfy.xkt.module.Mine
 import com.jcfy.xkt.module.User
 import com.jcfy.xkt.ui.activity.BasicInformationActivity
 import com.jcfy.xkt.ui.activity.MessageCenterActivity
+import com.jcfy.xkt.ui.activity.SettingActivity
+import com.jcfy.xkt.ui.dialog.ShareDialog
 import com.jcfy.xkt.ui.multitype.MineHeaderItemViewBinder
 import com.jcfy.xkt.ui.multitype.MineItemViewBinder
 import com.lz.baselibrary.view.RefreshListener
@@ -21,6 +23,7 @@ import kotlinx.android.synthetic.main.fragment_mine.*
 import me.drakeet.multitype.register
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
+import org.jetbrains.anko.support.v4.startActivity
 
 /**
  * @author linzheng
@@ -31,6 +34,8 @@ const val BASIC_INFORMATION = "基本信息"
 const val MESSAGE_CENTER = "消息中心"
 
 const val SETTING = "设置"
+
+const val SHARE = "分享"
 
 class MineFragment : BaseListFragment(), RefreshListener {
 
@@ -45,7 +50,7 @@ class MineFragment : BaseListFragment(), RefreshListener {
             Mine(R.drawable.mine_help, "使用帮助"),
             Mine(R.drawable.mine_opinion, "意见反馈"),
             Mine(R.drawable.mine_contact, "联系我们"),
-            Mine(R.drawable.mine_share, "分享"),
+            Mine(R.drawable.mine_share, SHARE),
             Mine(R.drawable.mine_setting, SETTING)
     )
 
@@ -93,6 +98,8 @@ class MineFragment : BaseListFragment(), RefreshListener {
         when (mine.title) {
             BASIC_INFORMATION -> startActivity(Intent(context, BasicInformationActivity::class.java))
             MESSAGE_CENTER -> startActivity(Intent(context, MessageCenterActivity::class.java))
+            SHARE -> ShareDialog().show(childFragmentManager)
+            SETTING -> startActivity<SettingActivity>()
         }
     }
 

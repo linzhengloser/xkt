@@ -10,10 +10,10 @@
 
     <!-- 主题蓝 -->
     <color name="bluePrimary">#4e9afd</color>
+    <color name="mainMenuTextNormal">#bfbfbf</color>
     <color name="transparency">#00000000</color>
     <color name="blackText">#707070</color>
-    <color name="mainMenuTextNormal">#bfbfbf</color>
-    
+
     <!-- RecyclerView 分割线颜色 -->
     <color name="itemDividerColor">#ebebeb</color>
     
@@ -22,5 +22,6 @@
     <color name="systemMessageColor">#509ffb</color>
     <color name="buyNoticeColor">#ff569a</color>
     <color name="maturityNoticeColor">#fdaa60</color>
+    <color name="black">#000000</color>
 
 </resources>

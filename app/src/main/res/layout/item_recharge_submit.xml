@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:background="@color/white">
+
+
+    <TextView
+            android:id="@+id/tv_promo_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="14dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textSize="13sp"
+            android:drawablePadding="7dp"
+            android:drawableRight="@drawable/recharge_center_promo_code"
+            android:textColor="@color/bluePrimary"
+            android:text="优惠码"
+            />
+
+
+    <EditText
+            android:id="@+id/et_promo_code"
+            android:layout_width="match_parent"
+            android:layout_height="34dp"
+            android:layout_marginLeft="19dp"
+            android:layout_marginRight="19dp"
+            android:layout_marginTop="14dp"
+            android:paddingLeft="14dp"
+            android:paddingRight="14dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_promo_code"
+            android:background="@drawable/shape_recharge_center_edit_text_frame"
+            android:inputType="number"
+            android:textSize="13dp"
+            android:textColor="#cccccc"
+            android:hint="请输入优惠码"/>
+
+    <TextView
+            android:id="@+id/tv_submit"
+            android:layout_width="273dp"
+            android:layout_height="53dp"
+            android:layout_marginTop="47dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_promo_code"
+            android:gravity="center"
+            android:background="@drawable/shape_recharge_submit_bg"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:text="提交"/>
+
+
+    <TextView
+            android:id="@+id/tv_instructions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="13sp"
+            android:textColor="#999999"
+            android:text="充值说明"
+            app:layout_constraintTop_toBottomOf="@id/tv_submit"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginTop="53dp"
+            android:layout_marginLeft="18dp"
+            />
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="65dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="1.支持支付宝，微信，QQ红包人工充值，苹果商店充值。\n2.默认兑换比例：1元=100三叶虫币。\n3.当您的充值出现问题，或者未到账时，请联系管理员。"
+            app:layout_constraintLeft_toLeftOf="@id/tv_instructions"
+            app:layout_constraintTop_toBottomOf="@id/tv_instructions"/>
+
+</android.support.constraint.ConstraintLayout>

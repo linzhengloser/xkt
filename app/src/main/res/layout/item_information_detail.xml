@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:paddingBottom="-1dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:background="@color/white">
+
+    <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:paddingLeft="18dp"
+            android:paddingRight="18dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textSize="20sp"
+            android:textColor="#262a3b"
+            android:text="林区杂草期起火危机树木，乌海消防紧急处理"/>
+
+
+    <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="18dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_title"
+            android:textSize="13sp"
+            android:textColor="#707070"
+            android:text="2018-04-09"/>
+
+    <TextView
+            android:id="@+id/tv_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            app:layout_constraintLeft_toRightOf="@id/tv_date"
+            app:layout_constraintTop_toTopOf="@id/tv_date"
+            android:textSize="13sp"
+            android:textColor="#707070"
+            android:text="今晚一定能吃鸡"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            app:layout_constraintLeft_toRightOf="@id/tv_author"
+            app:layout_constraintTop_toTopOf="@id/tv_date"
+            android:textSize="13sp"
+            android:textColor="@color/bluePrimary"
+            android:text="消防大队"/>
+
+
+    <ImageView
+            android:id="@+id/iv_cover"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="18dp"
+            android:paddingRight="18dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_date"
+            android:scaleType="fitXY"
+            android:src="@drawable/main_information_cover"/>
+
+
+    <View
+            android:id="@+id/v_safe_frame"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_marginLeft="18dp"
+            android:layout_marginRight="18dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@id/iv_cover"
+            android:background="@drawable/shape_information_detail_safe_frame"/>
+
+
+    <ImageView
+            android:id="@+id/iv_safe"
+            android:layout_width="112dp"
+            android:layout_height="106dp"
+            android:layout_marginLeft="10dp"
+            app:layout_constraintLeft_toLeftOf="@id/v_safe_frame"
+            app:layout_constraintTop_toTopOf="@id/v_safe_frame"
+            app:layout_constraintBottom_toBottomOf="@id/v_safe_frame"
+            android:src="@mipmap/ic_launcher"/>
+
+
+    <TextView
+            android:id="@+id/tv_safe_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="27dp"
+            app:layout_constraintLeft_toRightOf="@id/iv_safe"
+            app:layout_constraintTop_toTopOf="@id/v_safe_frame"
+            android:textSize="16sp"
+            android:textColor="#262a3b"
+            android:text="广告标题"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="6dp"
+            app:layout_constraintLeft_toRightOf="@id/iv_safe"
+            app:layout_constraintTop_toBottomOf="@id/tv_safe_title"
+            android:textSize="16sp"
+            android:textColor="#707070"
+            android:text="广告商名称"
+            />
+
+    <TextView
+            android:layout_width="67dp"
+            android:layout_height="29dp"
+            android:layout_marginRight="19dp"
+            android:layout_marginBottom="14dp"
+            app:layout_constraintRight_toRightOf="@id/v_safe_frame"
+            app:layout_constraintBottom_toBottomOf="@id/v_safe_frame"
+            android:gravity="center"
+            android:background="@drawable/shape_information_detail_safe_view"
+            android:textSize="16sp"
+            android:textColor="#00ff00"
+            android:text="查看"
+            />
+
+    <ImageButton
+            android:id="@+id/iv_like"
+            android:layout_width="0dp"
+            android:layout_height="65dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/iv_share_wechat"
+            app:layout_constraintTop_toBottomOf="@id/v_safe_frame"
+            android:background="@color/transparency"
+            android:src="@drawable/selector_information_detail_like"
+            />
+
+    <ImageButton
+            android:id="@+id/iv_share_wechat"
+            android:layout_width="0dp"
+            android:layout_height="65dp"
+            android:background="@color/transparency"
+            app:layout_constraintLeft_toRightOf="@id/iv_like"
+            app:layout_constraintRight_toLeftOf="@id/iv_share_friend_circle"
+            app:layout_constraintTop_toTopOf="@id/iv_like"
+            android:src="@drawable/selector_information_detail_share_wechat"
+            />
+
+    <ImageButton
+            android:id="@+id/iv_share_friend_circle"
+            android:layout_width="0dp"
+            android:layout_height="65dp"
+            android:background="@color/transparency"
+            app:layout_constraintLeft_toRightOf="@id/iv_share_wechat"
+            app:layout_constraintRight_toLeftOf="@id/iv_share_qq"
+            app:layout_constraintTop_toTopOf="@id/iv_like"
+            android:src="@drawable/selector_information_detail_friend_circle"
+            />
+
+    <ImageButton
+            android:id="@+id/iv_share_qq"
+            android:layout_width="0dp"
+            android:layout_height="65dp"
+            android:background="@color/transparency"
+            app:layout_constraintLeft_toRightOf="@id/iv_share_friend_circle"
+            app:layout_constraintRight_toLeftOf="@id/iv_share_sina"
+            app:layout_constraintTop_toTopOf="@id/iv_like"
+            android:src="@drawable/selector_information_detail_share_qq"
+            />
+
+    <ImageButton
+            android:id="@+id/iv_share_sina"
+            android:layout_width="0dp"
+            android:layout_height="65dp"
+            android:background="@color/transparency"
+            app:layout_constraintLeft_toRightOf="@id/iv_share_qq"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/iv_like"
+            android:src="@drawable/selector_information_detail_sina"
+            />
+
+
+    <View
+            android:id="@+id/v_divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            app:layout_constraintTop_toBottomOf="@id/iv_like"
+            android:background="@color/itemDividerColor"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="22dp"
+            android:layout_marginTop="6dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/v_divider"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="4dp"
+            android:textSize="16sp"
+            android:textColor="#707070"
+            android:text="推荐资讯"
+            />
+
+</android.support.constraint.ConstraintLayout>

@@ -1,7 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+
+    <include
+            android:id="@+id/layout_title"
+            layout="@layout/layout_title"
+            />
+
+
+    <ImageView
+            android:id="@+id/iv_icon"
+            android:layout_width="130dp"
+            android:layout_height="100dp"
+            android:src="@drawable/pay_result_success"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_title"
+            android:layout_marginTop="104dp"/>
+
+
+    <TextView
+            android:id="@+id/tv_hint_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="您已支付成功"
+            android:textColor="@color/black"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_icon"
+            android:layout_marginTop="28dp"/>
+
+    <TextView
+            android:id="@+id/tv_begin_learn"
+            android:layout_width="273dp"
+            android:layout_height="53dp"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textColor="#999999"
+            android:text="开始学习"
+            android:layout_marginTop="80dp"
+            android:background="@drawable/shape_pay_result_begin_learn"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_hint_info"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#999999"
+            android:textSize="16sp"
+            android:text="继续逛逛"
+            android:layout_marginTop="18dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_begin_learn"
+            />
 
 </android.support.constraint.ConstraintLayout>
