@@ -14,6 +14,7 @@ import com.jcfy.xkt.module.Mine
 import com.jcfy.xkt.module.User
 import com.jcfy.xkt.ui.activity.BasicInformationActivity
 import com.jcfy.xkt.ui.activity.MessageCenterActivity
+import com.jcfy.xkt.ui.activity.RechargeCenterActivity
 import com.jcfy.xkt.ui.activity.SettingActivity
 import com.jcfy.xkt.ui.dialog.ShareDialog
 import com.jcfy.xkt.ui.multitype.MineHeaderItemViewBinder
@@ -37,6 +38,8 @@ const val SETTING = "设置"
 
 const val SHARE = "分享"
 
+const val RECHARGE_CENTER = "充值中心"
+
 class MineFragment : BaseListFragment(), RefreshListener {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -45,7 +48,7 @@ class MineFragment : BaseListFragment(), RefreshListener {
 
     private val mMineList = listOf(
             Mine(R.drawable.mine_basic_information, BASIC_INFORMATION),
-            Mine(R.drawable.mine_recharge_center, "充值中心"),
+            Mine(R.drawable.mine_recharge_center, RECHARGE_CENTER),
             Mine(R.drawable.mine_message_center, MESSAGE_CENTER),
             Mine(R.drawable.mine_help, "使用帮助"),
             Mine(R.drawable.mine_opinion, "意见反馈"),
@@ -100,6 +103,7 @@ class MineFragment : BaseListFragment(), RefreshListener {
             MESSAGE_CENTER -> startActivity(Intent(context, MessageCenterActivity::class.java))
             SHARE -> ShareDialog().show(childFragmentManager)
             SETTING -> startActivity<SettingActivity>()
+            RECHARGE_CENTER -> startActivity<RechargeCenterActivity>()
         }
     }
 

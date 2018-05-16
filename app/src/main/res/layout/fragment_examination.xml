@@ -7,16 +7,15 @@
         android:layout_height="match_parent">
 
     <include
-            android:id="@+id/layout_title"
-            layout="@layout/layout_title"
+            android:id="@+id/layout_tab"
+            layout="@layout/layout_tab"
             />
 
-    <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_recharge_center"
+    <android.support.v4.view.ViewPager
+            android:id="@+id/vp_examination"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/layout_title"
-            />
+            app:layout_constraintTop_toBottomOf="@id/layout_tab"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
 </android.support.constraint.ConstraintLayout>

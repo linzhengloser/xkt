@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v4.app.FragmentPagerAdapter
 import android.support.v4.view.ViewPager
 import com.jcfy.xkt.base.BaseActivity
+import com.jcfy.xkt.ui.fragment.ExaminationFragment
 import com.jcfy.xkt.ui.fragment.ExerciseFragment
 import com.jcfy.xkt.ui.fragment.MainFragment
 import com.jcfy.xkt.ui.fragment.MineFragment
@@ -13,7 +14,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : BaseActivity(), ViewPager.OnPageChangeListener {
 
     private val mTitleTextList = listOf(
-            "首页","练习","考试","我的"
+            "首页", "练习", "考试", "我的"
     )
 
     private val mNavigationItems = listOf(
@@ -27,7 +28,7 @@ class MainActivity : BaseActivity(), ViewPager.OnPageChangeListener {
     private val mFragmentList = listOf(
             MainFragment.newInstance(),
             ExerciseFragment.newInstance(),
-            ExerciseFragment.newInstance(),
+            ExaminationFragment.newInstance(),
             MineFragment.newInstance()
     )
 
@@ -42,7 +43,7 @@ class MainActivity : BaseActivity(), ViewPager.OnPageChangeListener {
 
             override fun getCount() = mFragmentList.size
         }
-        ll_navigation_layout.setNavigationItems(mNavigationItems,vp_main)
+        ll_navigation_layout.setNavigationItems(mNavigationItems, vp_main)
         vp_main.addOnPageChangeListener(this)
     }
 

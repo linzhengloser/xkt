@@ -40,6 +40,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="13sp"
                     android:textColor="#262a3b"
+                    android:layout_marginTop="14dp"
                     android:text="热门"/>
         </LinearLayout>
 
@@ -60,6 +61,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="13sp"
                     android:textColor="#262a3b"
+                    android:layout_marginTop="14dp"
                     android:text="最新"/>
         </LinearLayout>
 
@@ -80,6 +82,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="13sp"
                     android:textColor="#262a3b"
+                    android:layout_marginTop="14dp"
                     android:text="考点"/>
         </LinearLayout>
 
@@ -100,6 +103,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="13sp"
                     android:textColor="#262a3b"
+                    android:layout_marginTop="14dp"
                     android:text="专栏"/>
         </LinearLayout>
 

@@ -3,6 +3,8 @@ package com.jcfy.xkt.ui.activity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import com.jcfy.xkt.R
+import com.jcfy.xkt.R.id.rv_basic_information
+import com.jcfy.xkt.R.id.srl_basic_information
 import com.jcfy.xkt.base.BaseListActivity
 import com.jcfy.xkt.dp
 import com.jcfy.xkt.module.BasicInformation

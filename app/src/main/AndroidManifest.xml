@@ -50,6 +50,9 @@
         <!-- 资讯详情 -->
         <activity android:name=".ui.activity.InformationDetailActivity"/>
 
+        <!-- 充值中心 -->
+        <activity android:name=".ui.activity.RechargeCenterActivity"/>
+
     </application>
 
 </manifest>
