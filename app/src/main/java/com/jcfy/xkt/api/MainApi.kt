@@ -50,7 +50,7 @@ interface MainApi {
     /**
      * 获取专栏列表
      */
-    @POST("home/getColumnList.do")
+    @POST("column/getColumnList.do")
     fun getColumnsList(
             @Field(PAGE_KEY) page: String = PAGE_DEFALUT_VALUE,
             @Field(LIMIT_KEY) limit: String = LIMIT_DEFAULT_VALUE

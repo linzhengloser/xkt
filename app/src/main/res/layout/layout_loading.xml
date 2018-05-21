@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    <ProgressBar
+            android:id="@+id/pb_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:indeterminateTint="#bfbfbf"
+            android:indeterminateTintMode="src_atop"/>
+
+
+
+    <TextView
+            android:id="@+id/tv_loading"
+            app:layout_constraintTop_toBottomOf="@id/pb_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginTop="30dp"
+            android:textSize="16sp"
+            android:textColor="#bfbfbf"
+            app:layout_constraintRight_toRightOf="parent"
+            android:text="加载中..."/>
+
+
+
+</android.support.constraint.ConstraintLayout>

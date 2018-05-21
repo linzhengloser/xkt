@@ -6,7 +6,7 @@ package com.jcfy.xkt.module
 
 data class InformationDetailWrapper(
         val newsDetail: InformationDetail,
-        val recommendList: List<Recommend>
+        val recommendList: List<Information>
 )
 
 data class InformationDetail(
@@ -19,14 +19,4 @@ data class InformationDetail(
     val type: Int,
     val title: String,
     val content: String
-)
-
-data class Recommend(
-    val imgUrl: String,
-    val newsId: Int,
-    val publishDate: Long,
-    val subhead: String,
-    val clickNum: Int,
-    val type: Int,
-    val title: String
 )

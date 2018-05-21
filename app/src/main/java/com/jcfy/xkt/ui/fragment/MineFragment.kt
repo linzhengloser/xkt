@@ -11,7 +11,6 @@ import android.view.ViewGroup
 import com.jcfy.xkt.R
 import com.jcfy.xkt.base.BaseListFragment
 import com.jcfy.xkt.module.Mine
-import com.jcfy.xkt.module.User
 import com.jcfy.xkt.ui.activity.BasicInformationActivity
 import com.jcfy.xkt.ui.activity.MessageCenterActivity
 import com.jcfy.xkt.ui.activity.RechargeCenterActivity
@@ -63,6 +62,7 @@ class MineFragment : BaseListFragment(), RefreshListener {
     override fun onStart() {
         super.onStart()
         EventBus.getDefault().register(this)
+        mAdapter.notifyDataSetChanged()
     }
 
     override fun onStop() {
@@ -72,10 +72,10 @@ class MineFragment : BaseListFragment(), RefreshListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        mAdapter.register(User::class, MineHeaderItemViewBinder())
+        mAdapter.register(String::class, MineHeaderItemViewBinder())
         mAdapter.register(Mine::class, MineItemViewBinder())
 
-        mItems.add(User())
+        mItems.add("")
         mItems.addAll(mMineList)
 
         rv_mine.adapter = mAdapter

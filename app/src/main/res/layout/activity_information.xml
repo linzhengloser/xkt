@@ -13,17 +13,17 @@
     <LinearLayout
             android:id="@+id/ll_type"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="100dp"
             android:paddingLeft="14dp"
             android:paddingRight="14dp"
-            android:paddingTop="20dp"
-            android:paddingBottom="20dp"
+            android:gravity="center_vertical"
             app:layout_constraintTop_toBottomOf="@id/layout_title"
             android:orientation="horizontal"
             android:background="@color/white">
 
 
         <LinearLayout
+                android:id="@+id/ll_hot"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -31,11 +31,13 @@
                 android:gravity="center_horizontal">
 
             <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:id="@+id/iv_hot"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:src="@drawable/information_popular_normal"/>
 
             <TextView
+                    android:id="@+id/tv_hot"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="13sp"
@@ -45,6 +47,7 @@
         </LinearLayout>
 
         <LinearLayout
+                android:id="@+id/ll_new"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -52,11 +55,13 @@
                 android:gravity="center_horizontal">
 
             <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:id="@+id/iv_new"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:src="@drawable/information_new_normal"/>
 
             <TextView
+                    android:id="@+id/tv_new"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="13sp"
@@ -66,6 +71,7 @@
         </LinearLayout>
 
         <LinearLayout
+                android:id="@+id/ll_test_site"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -73,11 +79,13 @@
                 android:gravity="center_horizontal">
 
             <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:id="@+id/iv_test_site"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:src="@drawable/information_test_site_normal"/>
 
             <TextView
+                    android:id="@+id/tv_test_site"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="13sp"
@@ -87,6 +95,7 @@
         </LinearLayout>
 
         <LinearLayout
+                android:id="@+id/ll_columns"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -94,11 +103,13 @@
                 android:gravity="center_horizontal">
 
             <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:id="@+id/iv_columns"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:src="@drawable/information_columns_normal"/>
 
             <TextView
+                    android:id="@+id/tv_columns"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="13sp"

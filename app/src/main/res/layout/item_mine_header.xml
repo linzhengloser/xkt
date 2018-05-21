@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="294dp"
         android:orientation="vertical">
@@ -12,6 +13,7 @@
 
 
         <LinearLayout
+                android:id="@+id/ll_avatar_nickname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -20,18 +22,20 @@
 
 
             <ImageView
+                    android:id="@+id/iv_avatar"
                     android:layout_width="67dp"
                     android:layout_height="67dp"
                     android:src="@mipmap/ic_launcher"/>
 
 
             <TextView
+                    android:id="@+id/tv_nickname"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:textSize="16sp"
                     android:textColor="@color/white"
-                    android:text="小鸡炖蘑菇"/>
+                    tools:text="小鸡炖蘑菇"/>
 
 
         </LinearLayout>

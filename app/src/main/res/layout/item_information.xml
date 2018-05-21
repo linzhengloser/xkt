@@ -16,34 +16,43 @@
             android:layout_height="match_parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:scaleType="fitXY"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:src="@drawable/main_information_cover"/>
+            android:scaleType="fitXY"
+            tools:src="@drawable/main_information_cover"/>
 
 
     <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/tv_title"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="11dp"
             android:layout_marginTop="8dp"
             app:layout_constraintLeft_toRightOf="@id/iv_cover"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            android:ellipsize="end"
+            android:singleLine="true"
             android:textSize="16sp"
-            android:layout_marginLeft="11dp"
             android:textColor="#262a3b"
-            android:text="林区杂草起火危机树木"/>
+            tools:text="林区杂草起火危机树木林区杂草起火危机树木林区杂草起火危机树木林区杂草起火危机树木"/>
 
 
     <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/tv_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
             android:layout_marginLeft="11dp"
+            android:layout_marginBottom="8dp"
             app:layout_constraintLeft_toRightOf="@id/iv_cover"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
+            android:ellipsize="end"
+            android:singleLine="false"
+            android:maxLines="2"
             android:textSize="11sp"
-            android:textColor="#262a3b"
             android:lines="2"
-            android:text="4月7号15时56分，内蒙古乌海市海勃湾区消防中队接到指挥中心"/>
+            android:textColor="#262a3b"
+            tools:text="4月7号15时56分，内蒙古乌海市海勃湾区消防中队接到指挥中心内蒙古乌海市海勃湾区消防中队接到指挥中心内蒙古乌海市海勃湾区消防中队接到指挥中心内蒙古乌海市海勃湾区消防中队接到指挥中心"/>
 
 
 </android.support.constraint.ConstraintLayout>
