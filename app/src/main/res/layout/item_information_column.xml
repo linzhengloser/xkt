@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:paddingLeft="18dp"
+        android:paddingRight="18dp"
+        android:paddingBottom="16dp"
+        android:paddingTop="18dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+    <ImageView
+            android:id="@+id/iv_cover"
+            android:layout_width="match_parent"
+            android:layout_height="133dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:src="@drawable/main_information_cover"
+            tools:scaleType="fitXY"/>
+
+    <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/bluePrimary"
+            android:textSize="12sp"
+            tools:text="2018-04-14 19:19:19"
+            app:layout_constraintTop_toBottomOf="@id/iv_cover"
+            android:layout_marginTop="10dp"/>
+
+
+    <TextView
+            android:id="@+id/tv_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="false"
+            android:maxLines="2"
+            android:ellipsize="end"
+            app:layout_constraintTop_toBottomOf="@id/tv_date"
+            android:layout_marginTop="8dp"
+            tools:text="啦啦啦打我撒奇偶ISO的女偶尔叫我if解耦的聚隆科技啦啦啦打我撒奇偶ISO的女偶尔叫我if解耦的聚隆科技啦啦啦打我撒奇偶ISO的女偶尔叫我if解耦的聚隆科技"/>
+
+
+
+</android.support.constraint.ConstraintLayout>

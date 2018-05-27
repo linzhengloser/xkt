@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -30,6 +31,10 @@ public class SelectionAdapter implements ViewPager.OnPageChangeListener {
         if (!mBinderMap.containsKey(clazz)) mBinderMap.put(clazz, binder);
     }
 
+    public void bindLayout(ViewGroup layout) {
+        bindLayout(layout, -1);
+    }
+
     public void bindLayout(ViewGroup layout, int defaultSectionIndex) {
         mBindLayout = layout;
         View childView;
@@ -47,9 +52,19 @@ public class SelectionAdapter implements ViewPager.OnPageChangeListener {
                     if (mIsSingleSelection && finalIndex == mSelectionIndex) return;
                     setSingleChild(finalIndex);
                     setChildViewOrChildViewGroup(finalIndex, finalChildView);
+                    if (mListener != null)
+                        mListener.onSelection(finalIndex, isChildViewSelection(finalChildView));
                 }
             });
         }
+    }
+
+    private boolean isChildViewSelection(View childView) {
+        return getViewTag(childView).equals("selection");
+    }
+
+    private void toggleChildViewTag(View childView) {
+        childView.setTag(isChildViewSelection(childView) ? "" : "selection");
     }
 
     public void bindViewPager(ViewPager viewPager, ViewGroup bindLayout) {
@@ -58,41 +73,58 @@ public class SelectionAdapter implements ViewPager.OnPageChangeListener {
     }
 
     private void setChildViewOrChildViewGroup(int index, View view) {
+        toggleChildViewTag(view);
         if (view instanceof ViewGroup) {
             setChildLayout(index, (ViewGroup) view);
         } else {
-            setChild(index, view);
+            setChild(index, 0, view, isChildViewSelection(view));
         }
     }
 
-    private void setChild(int index, View view) {
-        view.setTag(getViewTag(view).equals("selection") ? "" : "selection");
-        boolean toggle = view.getTag().equals("selection");
+    private void setChild(int parentIndex, int childIndex, View view, boolean toggle) {
         SelectionBinder selectionBinder = mBinderMap.get(view.getClass());
         if (selectionBinder == null)
             throw new RuntimeException(view.getClass().toString() + " not register");
-        selectionBinder.toggleView(index, toggle, view);
-        if (mListener != null)
-            mListener.onSelection(index, toggle);
+        if (!isNeedSelection(childIndex, selectionBinder)) return;
+        selectionBinder.toggleView(parentIndex, toggle, view);
     }
 
-    private void setChildLayout(int index, ViewGroup child) {
+    private void setChildLayout(int index, ViewGroup childLayout) {
         View view;
-        for (int i = 0; i < child.getChildCount(); i++) {
-            view = child.getChildAt(i);
-            setChild(index, view);
+        for (int i = 0; i < childLayout.getChildCount(); i++) {
+            view = childLayout.getChildAt(i);
+            setChild(index, i, view, isChildViewSelection(childLayout));
         }
     }
 
+    /**
+     * 判断是否需要设置绑定 SelectionBinder
+     */
+    private boolean isNeedSelection(int index, SelectionBinder binder) {
+        if (!binder.needSelectionChildIndex().isEmpty()) {
+            List<Integer> needBinderIndex = binder.needSelectionChildIndex();
+            return needBinderIndex.contains(index);
+        }
+        return true;
+    }
+
     private void setSingleChild(int index) {
-        if (mIsSingleSelection && mSelectionIndex != -1) {
-            setChildViewOrChildViewGroup(mSelectionIndex, mBindLayout.getChildAt(mSelectionIndex));
+        if (mIsSingleSelection) {
+            if (mSelectionIndex != -1) {
+                setChildViewOrChildViewGroup(mSelectionIndex, mBindLayout.getChildAt(mSelectionIndex));
+            }
             mSelectionIndex = index;
         }
     }
 
     public void setSelection(int index) {
+        if (mIsSingleSelection) mSelectionIndex = index;
         setChildViewOrChildViewGroup(index, mBindLayout.getChildAt(index));
+        mBindLayout.getChildAt(index).setTag("selection");
+    }
+
+    public int getSelectionIndex() {
+        return mSelectionIndex;
     }
 
     private String getViewTag(View view) {
@@ -100,7 +132,7 @@ public class SelectionAdapter implements ViewPager.OnPageChangeListener {
     }
 
     public SelectionAdapter singleSelection() {
-        this.mIsSingleSelection = !mIsSingleSelection;
+        this.mIsSingleSelection = true;
         return this;
     }
 
@@ -117,6 +149,7 @@ public class SelectionAdapter implements ViewPager.OnPageChangeListener {
     @Override
     public void onPageSelected(int position) {
         int newPosition = position % mBindLayout.getChildCount();
+
         setSingleChild(newPosition);
         setSelection(newPosition);
     }
@@ -126,7 +159,7 @@ public class SelectionAdapter implements ViewPager.OnPageChangeListener {
 
     }
 
-    public static interface OnSelectionListener {
+    public interface OnSelectionListener {
         void onSelection(int index, boolean toggle);
     }
 

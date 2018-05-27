@@ -2,13 +2,10 @@ package com.jcfy.xkt.ui.activity
 
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import com.jcfy.xkt.R
-import com.jcfy.xkt.Utils
+import com.jcfy.xkt.*
 import com.jcfy.xkt.api.MainApi
 import com.jcfy.xkt.base.BaseListActivity
 import com.jcfy.xkt.base.LoadListData
-import com.jcfy.xkt.dp
-import com.jcfy.xkt.getResourceColor
 import com.jcfy.xkt.module.Information
 import com.jcfy.xkt.module.InformationDetail
 import com.jcfy.xkt.ui.multitype.InformationDetailItemViewBinder
@@ -30,6 +27,7 @@ class InformationDetailActivity : BaseListActivity(), LoadListData, RefreshListe
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_information_detail)
+        setTitleText("资讯")
         mInformationId = intent.getIntExtra("informationId", 0).toString()
 
         mAdapter.register(InformationDetail::class, InformationDetailItemViewBinder())

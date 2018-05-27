@@ -14,7 +14,7 @@ class MyApplication : LibraryApplication() {
 
     override fun onCreate() {
         super.onCreate()
-        Api.baseUrl = "http://115.159.109.107:80/client/"
+        Api.baseUrl = "http://wx.119kst.com/client/"
 
         LoadSir.beginBuilder()
                 .addCallback(LoadingCallback())
@@ -22,7 +22,6 @@ class MyApplication : LibraryApplication() {
                 .addCallback(EmptyCallback())
                 .setDefaultCallback(LoadingCallback::class.java)
                 .commit()
-
     }
 
 }

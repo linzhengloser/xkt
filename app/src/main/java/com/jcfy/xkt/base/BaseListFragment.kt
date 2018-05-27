@@ -25,6 +25,10 @@ abstract class BaseListFragment : LibraryBaseListFragment(), Callback.OnReloadLi
         mLoadService.showCallback(EmptyCallback::class.java)
     }
 
+    override fun showSuccessLayout() {
+        mLoadService.showSuccess()
+    }
+
     override fun loadData() {
     }
 

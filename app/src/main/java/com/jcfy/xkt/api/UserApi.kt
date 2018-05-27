@@ -20,7 +20,7 @@ interface UserApi {
             @Field("mobile") phoneNumber: String,
             @Field("pwd") pwd: String,
             @Field("equipmentId") equipmentId: String
-    ): Observable<BaseData<UserWrapper>>
+    ): Observable<Response<UserWrapper>>
 
 
     /**
@@ -38,7 +38,7 @@ interface UserApi {
             @Field("thirdName") nickName: String,
             @Field("thirdSex") sex: String,
             @Field("thirdIocn") avatar: String
-    ): Observable<BaseData<UserWrapper>>
+    ): Observable<Response<UserWrapper>>
 
     /**
      * 发送验证码
@@ -48,7 +48,7 @@ interface UserApi {
     fun sendValidateCode(
             @Field("mobile") phoneNUmber: String,
             @Field("type") type: String
-    ): Observable<BaseData<Any>>
+    ): Observable<Response<Any>>
 
 
     /**
@@ -60,7 +60,7 @@ interface UserApi {
             @Field("mobile") phoneNumber: String,
             @Field("pwd") pwd: String,
             @Field("code") validateCode: String
-    ): Observable<BaseData<Any>>
+    ): Observable<Response<Any>>
 
 
     /**
@@ -72,7 +72,7 @@ interface UserApi {
             @Field(USER_ID_KEY) userId: String,
             @Field("pwd") pwd: String,
             @Field("newPwd") newPwd: String
-    ): Observable<BaseData<Any>>
+    ): Observable<Response<Any>>
 
 
     /**
@@ -84,7 +84,7 @@ interface UserApi {
             @Field("mobile") phoneNumber: String,
             @Field("code") validateCode: String,
             @Field("newPwd") newPwd: String
-    ): Observable<BaseData<Any>>
+    ): Observable<Response<Any>>
 
     /**
      * 绑定手机号
@@ -95,6 +95,6 @@ interface UserApi {
             @Field("mobile") phoneNumber: String,
             @Field("code") validateCode: String,
             @Field("token") token: String
-    ): Observable<BaseData<UserWrapper>>
+    ): Observable<Response<UserWrapper>>
 
 }

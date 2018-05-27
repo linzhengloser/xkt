@@ -18,7 +18,6 @@ import com.jcfy.xkt.ui.multitype.MainInformationItemViewBinder
 import com.kingja.loadsir.callback.Callback
 import com.lz.baselibrary.network.Api
 import com.lz.baselibrary.view.RefreshListener
-import com.uber.autodispose.android.lifecycle.AndroidLifecycleScopeProvider
 import io.reactivex.functions.Consumer
 import kotlinx.android.synthetic.main.fragment_main.*
 import me.drakeet.multitype.register
@@ -27,10 +26,6 @@ import me.drakeet.multitype.register
  * @author linzheng
  */
 class MainFragment : BaseListFragment(), RefreshListener, Callback.OnReloadListener, LoadListData {
-
-    private val mScopeProvider by lazy(LazyThreadSafetyMode.NONE) {
-        AndroidLifecycleScopeProvider.from(this)
-    }
 
     override fun loadData() {
     }

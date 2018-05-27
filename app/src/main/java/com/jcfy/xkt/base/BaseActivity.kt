@@ -60,6 +60,10 @@ open class BaseActivity : LibraryBaseActivity(), Callback.OnReloadListener {
         mLoadService.showCallback(ErrorCallback::class.java)
     }
 
+    override fun showSuccessLayout() {
+        mLoadService.showSuccess()
+    }
+
     override fun onReload(v: View?) {
 
     }

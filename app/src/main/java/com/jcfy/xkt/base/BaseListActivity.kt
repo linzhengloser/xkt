@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import android.view.Window
 import com.jcfy.xkt.Utils
 import com.jcfy.xkt.ui.loadsir.EmptyCallback
+import com.jcfy.xkt.ui.loadsir.ErrorCallback
 import com.jcfy.xkt.ui.loadsir.LoadingCallback
 import com.kingja.loadsir.callback.Callback
 import com.kingja.loadsir.core.LoadService
@@ -34,7 +35,15 @@ open class BaseListActivity : LibraryBaseListActivity(), Callback.OnReloadListen
         mLoadService.showCallback(EmptyCallback::class.java)
     }
 
-    override fun onReload(v: View?) {
+    override fun showErrorLayout() {
+        mLoadService.showCallback(ErrorCallback::class.java)
     }
 
+    override fun showSuccessLayout() {
+        super.showSuccessLayout()
+        mLoadService.showSuccess()
+    }
+
+    override fun onReload(v: View?) {
+    }
 }

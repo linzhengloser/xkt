@@ -24,12 +24,13 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
-    implementation ('com.lz:baselibrary:0.0.4'){
+    implementation ('com.lz:baselibrary:0.0.5'){
 //        exclude group: "com.github.bumptech"
     }
 //    implementation 'com.github.bumptech.glide:glide:4.7.1'
     implementation "org.jetbrains.anko:anko:$anko_version"
     implementation 'com.kingja.loadsir:loadsir:1.3.6'
+    implementation 'jp.wasabeef:glide-transformations:3.3.0'
     kapt 'com.github.bumptech.glide:compiler:4.7.1'
 
 }

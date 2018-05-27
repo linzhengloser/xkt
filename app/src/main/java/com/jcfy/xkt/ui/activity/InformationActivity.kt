@@ -8,7 +8,9 @@ import com.jcfy.xkt.*
 import com.jcfy.xkt.api.MainApi
 import com.jcfy.xkt.base.BaseListActivity
 import com.jcfy.xkt.base.LoadListData
+import com.jcfy.xkt.module.Column
 import com.jcfy.xkt.module.Information
+import com.jcfy.xkt.ui.multitype.InformationColumnItemViewBinder
 import com.jcfy.xkt.ui.multitype.InformationItemViewBinder
 import com.jcfy.xkt.utils.selection.ImageViewSelectionBinder
 import com.jcfy.xkt.utils.selection.SelectionAdapter
@@ -24,15 +26,17 @@ import me.drakeet.multitype.register
  */
 class InformationActivity : BaseListActivity(), RefreshListener, LoadListData {
 
-    private var mSelectDictId = 0
+    private var mSelectDictId = 1
 
-    private val selectionAdapter: SelectionAdapter = SelectionAdapter().apply {
+    private val mSelectionAdapter: SelectionAdapter = SelectionAdapter().apply {
         register(AppCompatTextView::class.java, TextViewSelectionBinder())
         register(AppCompatImageView::class.java, ImageViewSelectionBinder())
         singleSelection()
         setListener { index, _ ->
-            if(index == 3){
-
+            mPage = 1
+            v_divider.bindBoolean2Visibility(index != 3)
+            if (index == 3) {
+                loadColumnListData()
                 return@setListener
             }
             mSelectDictId = index + 1
@@ -45,10 +49,12 @@ class InformationActivity : BaseListActivity(), RefreshListener, LoadListData {
         setContentView(R.layout.activity_information)
         setTitleText("资讯")
         mAdapter.register(Information::class, InformationItemViewBinder())
+        mAdapter.register(Column::class, InformationColumnItemViewBinder())
         rv_information.layoutManager = LinearLayoutManager(this)
         rv_information.adapter = mAdapter
         srl_information.setRefreshListener(this)
-        selectionAdapter.bindLayout(ll_type, 0)
+        mSelectionAdapter.bindLayout(ll_type, 0)
+        loadListData()
     }
 
     override fun loadListData(isInitialize: Boolean, isRefresh: Boolean) {
@@ -60,9 +66,21 @@ class InformationActivity : BaseListActivity(), RefreshListener, LoadListData {
         })
     }
 
+    private fun loadColumnListData(isInitialize: Boolean = true, isRefresh: Boolean = true) {
+        val api = Api.createApi(MainApi::class)
+        Utils.handleListData(api.getColumnsList(mPage.toString()), isInitialize, srl_information, this, mScopeProvider, Consumer {
+            mLoadService.showSuccess()
+            mItems.addPageList(isRefresh, it.columnList)
+            mAdapter.notifyDataSetChanged()
+        })
+    }
+
     override fun refresh(isRefresh: Boolean) {
         mPage = mPage.page(isRefresh)
-        loadListData(false, isRefresh)
+        if (mSelectionAdapter.selectionIndex == 3)
+            loadColumnListData(false, isRefresh)
+        else
+            loadListData(false, isRefresh)
     }
 
 }

@@ -32,7 +32,8 @@ class ApiConsumer : Consumer<Throwable> {
                 mRefreshLayout?.isLoadMoreEnable(false)
                 if (mIsInitialize == true) mBaseView?.showEmptyDataLayout()
             } else {
-                ToastUtils.showToast("API异常。" + t.errorMessage)
+                mBaseView?.showErrorLayout()
+                ToastUtils.showToast(t.toString())
             }
         } else {
             ToastUtils.showToast("程序内部异常。" + t.message)

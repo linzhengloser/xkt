@@ -2,11 +2,15 @@ package com.jcfy.xkt
 
 import android.app.Activity
 import android.content.Context
+import android.graphics.Color
 import android.support.v4.content.ContextCompat
+import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
-import com.jcfy.xkt.api.ApiConsumer
-import com.jcfy.xkt.api.BaseData
+import android.widget.LinearLayout
+import android.widget.TextView
+import com.jcfy.xkt.api.*
+import com.jcfy.xkt.module.question.Options
 import com.jcfy.xkt.utils.ApiFunction
 import com.lz.baselibrary.LibraryApplication
 import com.lz.baselibrary.base.BaseView
@@ -19,6 +23,8 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.functions.Consumer
 import kotlinx.android.synthetic.main.layout_title.*
 import me.drakeet.multitype.Items
+import org.jetbrains.anko.imageResource
+import org.jetbrains.anko.textColor
 
 /**
  * @author linzheng
@@ -31,6 +37,11 @@ val androidScheduler: Scheduler = AndroidSchedulers.mainThread()
  */
 inline fun Activity.setTitleText(title: String) {
     tv_title?.text = title
+}
+
+inline fun Activity.setMenuImage(imageResId: Int) {
+    iv_menu?.visibility = View.VISIBLE
+    iv_menu?.imageResource = imageResId
 }
 
 /**
@@ -77,6 +88,62 @@ inline fun Items.addPageData(isRefresh: Boolean, item: Any) {
 }
 
 
+fun TextView.bindQuestionType(type: Int) {
+    var backgroundResId: Int = when (type) {
+        QUESTION_TYPE_SINGLE -> {
+            text = "单选"
+            R.drawable.shape_question_single_selection
+        }
+        QUESTION_TYPE_MULTI -> {
+            text = "多选"
+            R.drawable.shape_question_multi_selection
+        } //多选
+        QUESTION_TYPE_JUDGMENT -> {
+            text = "判断"
+            R.drawable.shape_question_judgment //判断
+        }
+        else -> R.drawable.shape_question_judgment
+    }
+    setBackgroundResource(backgroundResId)
+}
+
+// 题目相关
+val answerOptionsString = listOf("A", "B", "C", "D", "E", "F", "G", "H", "I", "J")
+
+fun LinearLayout.bindQuestionOptions(optionsList: List<Options>) {
+    var layout: LinearLayout
+    var optionLetter: TextView
+    var optionText: TextView
+    optionsList.forEachIndexed { index, options ->
+        layout = LinearLayout(context).apply {
+            optionLetter = TextView(context).apply {
+                layoutParams = LinearLayout.LayoutParams(21.dp(), 21.dp())
+                text = answerOptionsString[options.tab]
+                textSize = 16F
+                gravity = Gravity.CENTER
+                textColor = Color.parseColor("#262a3b")
+                setBackgroundResource(R.drawable.shape_question_option_normal)
+            }
+            optionText = TextView(context).apply {
+                layoutParams = ViewGroup.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+                text = options.content
+                textSize = 16F
+                textColor = Color.parseColor("#262a3b")
+                setPadding(20.dp(), 0, 0, 0)
+            }
+            layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT).apply {
+                gravity = Gravity.CENTER_VERTICAL
+            }
+            if (index > 0) setPadding(0, 21.dp(), 0, 0)
+            orientation = LinearLayout.HORIZONTAL
+            addView(optionLetter)
+            addView(optionText)
+        }
+        addView(layout)
+    }
+}
+
+
 inline fun Int.page(isRefresh: Boolean) = if (isRefresh) 1 else plus(1)
 
 inline fun View.bindBoolean2Visibility(isVisibility: Boolean) = if (isVisibility) visibility = View.VISIBLE else View.GONE
@@ -84,7 +151,7 @@ inline fun View.bindBoolean2Visibility(isVisibility: Boolean) = if (isVisibility
 object Utils {
 
     fun <T> handleListData(
-            observable: Observable<BaseData<T>>,
+            observable: Observable<Response<T>>,
             isInitialize: Boolean,
             refreshLayout: RefreshLayout,
             baseView: BaseView,

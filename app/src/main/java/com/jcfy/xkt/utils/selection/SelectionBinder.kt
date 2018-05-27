@@ -9,4 +9,6 @@ interface SelectionBinder<T : View> {
 
     fun toggleView(index: Int, toggle: Boolean, view: T)
 
+    fun needSelectionChildIndex() = arrayListOf<Int>()
+
 }

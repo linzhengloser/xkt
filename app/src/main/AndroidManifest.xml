@@ -53,6 +53,12 @@
         <!-- 充值中心 -->
         <activity android:name=".ui.activity.RechargeCenterActivity"/>
 
+        <!-- 练习 -->
+        <activity android:name=".ui.activity.ExerciseActivity"/>
+
+        <!-- 章节练习 -->
+        <activity android:name=".ui.activity.ChapterExerciseActivity"/>
+
     </application>
 
 </manifest>

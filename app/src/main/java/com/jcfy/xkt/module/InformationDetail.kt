@@ -20,3 +20,4 @@ data class InformationDetail(
     val title: String,
     val content: String
 )
+

@@ -1,5 +1,6 @@
 package com.jcfy.xkt.api
 
+import com.jcfy.xkt.module.ColumnWrapper
 import com.jcfy.xkt.module.InformationDetailWrapper
 import com.jcfy.xkt.module.InformationWrapper
 import com.jcfy.xkt.module.MainWrapper
@@ -21,9 +22,9 @@ interface MainApi {
     @FormUrlEncoded
     fun getMainData(
             @Field("bannerType") bannerType: String = "1",
-            @Field(PAGE_KEY) page: String = PAGE_DEFALUT_VALUE,
+            @Field(PAGE_KEY) page: String = PAGE_DEFAULT_VALUE,
             @Field(LIMIT_KEY) limit: String = LIMIT_DEFAULT_VALUE
-    ): Observable<BaseData<MainWrapper>>
+    ): Observable<Response<MainWrapper>>
 
     /**
      * 资讯列表
@@ -32,9 +33,9 @@ interface MainApi {
     @FormUrlEncoded
     fun getInformationList(
             @Field("dictId") dictId: String,
-            @Field(PAGE_KEY) page: String = PAGE_DEFALUT_VALUE,
+            @Field(PAGE_KEY) page: String = PAGE_DEFAULT_VALUE,
             @Field(LIMIT_KEY) limit: String = LIMIT_DEFAULT_VALUE
-    ): Observable<BaseData<InformationWrapper>>
+    ): Observable<Response<InformationWrapper>>
 
 
     /**
@@ -44,17 +45,18 @@ interface MainApi {
     @FormUrlEncoded
     fun getInformationDetail(
             @Field("newsId") informationId: String
-    ): Observable<BaseData<InformationDetailWrapper>>
+    ): Observable<Response<InformationDetailWrapper>>
 
 
     /**
      * 获取专栏列表
      */
     @POST("column/getColumnList.do")
+    @FormUrlEncoded
     fun getColumnsList(
-            @Field(PAGE_KEY) page: String = PAGE_DEFALUT_VALUE,
+            @Field(PAGE_KEY) page: String = PAGE_DEFAULT_VALUE,
             @Field(LIMIT_KEY) limit: String = LIMIT_DEFAULT_VALUE
-    ): Observable<BaseData<Any>>
+    ): Observable<Response<ColumnWrapper>>
 
 
 }

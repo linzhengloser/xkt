@@ -6,6 +6,19 @@ import android.os.Parcelable
 /**
  * @author linzheng
  */
+
+const val RANDOM_EXERCISE = "随机练习"
+
+const val CHAPTER_EXERCISE = "章节练习"
+
+const val SPECIAL_EXERCISE = "专项练习"
+
+const val NO_DONE_EXERCISE = "未做题库"
+
+const val WRONG_EXERCISE = "错题题库"
+
+const val COLLECTION_EXERCISE = "收藏题库"
+
 data class ExerciseExamination(val icon: Int, val title: String) : Parcelable {
 
     constructor(parcel: Parcel) : this(
