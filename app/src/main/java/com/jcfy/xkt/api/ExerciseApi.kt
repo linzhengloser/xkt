@@ -1,7 +1,9 @@
 package com.jcfy.xkt.api
 
 import com.jcfy.xkt.module.ChapterWrapper
+import com.jcfy.xkt.module.question.QuestionCollectionResult
 import com.jcfy.xkt.module.question.QuestionWrapper
+import com.jcfy.xkt.utils.UserUtils
 import io.reactivex.Observable
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -18,8 +20,8 @@ interface ExerciseApi {
     @POST("question/getRondomList.do")
     @FormUrlEncoded
     fun getRandomQuestionList(
-            @Field("type") type: String = "1",
-            @Field("tel") tel: String = "13477484198"
+            @Field("type") type: Int,
+            @Field("tel") tel: String = UserUtils.user?.mobile!!
     ): Observable<Response<QuestionWrapper>>
 
 
@@ -29,8 +31,8 @@ interface ExerciseApi {
     @POST("question/getChapterIndex.do")
     @FormUrlEncoded
     fun getChapterList(
-            @Field("type") type: String = "1",
-            @Field("tel") tel: String = "13477484198"
+            @Field("type") type: Int,
+            @Field("tel") tel: String = UserUtils.user?.mobile!!
     ): Observable<Response<ChapterWrapper>>
 
     /**
@@ -40,7 +42,7 @@ interface ExerciseApi {
     @FormUrlEncoded
     fun getQuestionListByChapterId(
             @Field("chapterId") chapterId: Int,
-            @Field("tel") tel: String = "13477484198"
+            @Field("tel") tel: String = UserUtils.user?.mobile!!
     ): Observable<Response<QuestionWrapper>>
 
 
@@ -50,8 +52,8 @@ interface ExerciseApi {
     @POST("question/notDoneList.do")
     @FormUrlEncoded
     fun getNotDoneQuestionList(
-            @Field("type") type: String = "1",
-            @Field("tel") tel: String = "1347748198"
+            @Field("type") type: Int,
+            @Field("tel") tel: String = UserUtils.user?.mobile!!
     ): Observable<Response<QuestionWrapper>>
 
     /**
@@ -70,8 +72,8 @@ interface ExerciseApi {
     @POST("question/getErrorList.do")
     @FormUrlEncoded
     fun getWrongQuestionList(
-            @Field("type") type: String,
-            @Field("tel") tel: String = "1347748198"
+            @Field("type") type: Int,
+            @Field("tel") tel: String = UserUtils.user?.mobile!!
     ): Observable<Response<QuestionWrapper>>
 
 
@@ -81,15 +83,15 @@ interface ExerciseApi {
     @POST("question/getCollectionList.do")
     @FormUrlEncoded
     fun getCollectionQuestionList(
-            @Field("type") type: String,
-            @Field("tel") tel: String = "1347748198"
+            @Field("type") type: Int,
+            @Field("tel") tel: String = UserUtils.user?.mobile!!
     ): Observable<Response<QuestionWrapper>>
 
     @POST("question/getSpecialList.do")
     @FormUrlEncoded
     fun getSpecialQuestionList(
-            @Field("type") type: String,
-            @Field("rank") rank: String = type
+            @Field("type") type: Int,
+            @Field("rank") rank: Int
     ): Observable<Response<QuestionWrapper>>
 
 
@@ -97,8 +99,10 @@ interface ExerciseApi {
      * 收藏 or 取消收藏题目
      */
     @POST("question/toCollection.do")
+    @FormUrlEncoded
     fun collectionQuestion(
-            @Field("questionId") questionId: Int
-    ): Observable<Response<String>>
+            @Field("questionId") questionId: Int,
+            @Field("tel") tel: String = UserUtils.user?.mobile!!
+    ): Observable<Response<QuestionCollectionResult>>
 
 }

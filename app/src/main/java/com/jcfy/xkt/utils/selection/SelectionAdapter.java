@@ -118,6 +118,7 @@ public class SelectionAdapter implements ViewPager.OnPageChangeListener {
     }
 
     public void setSelection(int index) {
+//        if (mIsSingleSelection && mSelectionIndex == index) return;
         if (mIsSingleSelection) mSelectionIndex = index;
         setChildViewOrChildViewGroup(index, mBindLayout.getChildAt(index));
         mBindLayout.getChildAt(index).setTag("selection");

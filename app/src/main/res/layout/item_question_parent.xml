@@ -19,7 +19,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             android:layout_marginLeft="18dp"
             android:drawablePadding="14dp"
-            android:drawableLeft="@drawable/question_parent_icon"
+            android:drawableLeft="@drawable/chapter_parent_icon"
             android:text="第一章儿童消防绘画作文大赛"/>
 
     <TextView
@@ -39,6 +39,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginRight="14dp"
-            android:src="@drawable/question_parent_close"/>
+            android:src="@drawable/chapter_parent_close"/>
 
 </android.support.constraint.ConstraintLayout>

@@ -48,7 +48,7 @@ data class Question(
         val questionId: Int,
         val optionsList: List<Options>,
         val answerlist: List<String>,
-        val isCollection: Int,
+        var isCollection: Int,
         val explanation: String,
         val type: Int,
         val content: String) : Parcelable {
@@ -107,3 +107,9 @@ data class Options(
         }
     }
 }
+
+
+
+data class QuestionCollectionResult(
+    val flag: Int
+)

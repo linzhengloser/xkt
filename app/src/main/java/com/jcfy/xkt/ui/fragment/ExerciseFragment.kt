@@ -1,7 +1,9 @@
 package com.jcfy.xkt.ui.fragment
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.app.AlertDialog
 import android.support.v7.widget.AppCompatTextView
 import android.view.LayoutInflater
 import android.view.View
@@ -10,8 +12,10 @@ import com.jcfy.xkt.R
 import com.jcfy.xkt.androidScheduler
 import com.jcfy.xkt.api.ApiConsumer
 import com.jcfy.xkt.api.ExerciseApi
+import com.jcfy.xkt.api.Response
 import com.jcfy.xkt.base.BaseListFragment
 import com.jcfy.xkt.module.*
+import com.jcfy.xkt.module.question.QuestionWrapper
 import com.jcfy.xkt.ui.activity.ChapterExerciseActivity
 import com.jcfy.xkt.ui.activity.ExerciseActivity
 import com.jcfy.xkt.ui.itemdecoration.MyViewPagerAdapter
@@ -19,6 +23,7 @@ import com.jcfy.xkt.utils.ApiFunction
 import com.jcfy.xkt.utils.selection.SelectionAdapter
 import com.jcfy.xkt.utils.selection.TabTextViewSectionBinder
 import com.lz.baselibrary.network.Api
+import com.lz.baselibrary.utils.ToastUtils
 import com.uber.autodispose.kotlin.autoDisposable
 import io.reactivex.Observable
 import io.reactivex.functions.Consumer
@@ -55,6 +60,17 @@ class ExerciseFragment : BaseListFragment() {
         setListener { index, _ ->
             vp_exercise.currentItem = index
         }
+    }
+
+    private val mSpecialExerciseDialog: AlertDialog  by lazy {
+        AlertDialog.Builder(context!!)
+                .setTitle("请选择题目类型")
+                .setItems(arrayOf("单选", "多选", "判断"), { dialogInterface: DialogInterface, i: Int ->
+                    dialogInterface.dismiss()
+                    val api = Api.createApi(ExerciseApi::class)
+                    handleQuestionList(api.getSpecialQuestionList(i + 1, mType), SPECIAL_EXERCISE)
+                })
+                .create()
     }
 
     private var mType: Int = 0
@@ -97,22 +113,27 @@ class ExerciseFragment : BaseListFragment() {
 
         if (event.title == CHAPTER_EXERCISE) {
             //章节
-            context?.startActivity<ChapterExerciseActivity>()
+            context?.startActivity<ChapterExerciseActivity>("type" to mType)
+            return
+        } else if (event.title == SPECIAL_EXERCISE) {
+            //专项练习
+            mSpecialExerciseDialog.show()
             return
         }
 
         val api = Api.createApi(ExerciseApi::class)
-        val type = mType.toString()
         val observable = when (event.title) {
-            RANDOM_EXERCISE -> api.getRandomQuestionList(type)
-            CHAPTER_EXERCISE -> api.getSpecialQuestionList(type, type)
-            NO_DONE_EXERCISE -> api.getNotDoneQuestionList(type)
-            SPECIAL_EXERCISE -> api.getSpecialQuestionList(type)
-            WRONG_EXERCISE -> api.getWrongQuestionList(type)
-            COLLECTION_EXERCISE -> api.getCollectionQuestionList(type)
+            RANDOM_EXERCISE -> api.getRandomQuestionList(mType)
+            NO_DONE_EXERCISE -> api.getNotDoneQuestionList(mType)
+            WRONG_EXERCISE -> api.getWrongQuestionList(mType)
+            COLLECTION_EXERCISE -> api.getCollectionQuestionList(mType)
             else -> null
         }
+        handleQuestionList(observable!!, event.title)
+    }
 
+
+    private fun handleQuestionList(observable: Observable<Response<QuestionWrapper>>, title: String) {
         observable!!
                 .doOnSubscribe { showLoadingDialog() }
                 .doFinally { hideLoadingDialog() }
@@ -120,14 +141,13 @@ class ExerciseFragment : BaseListFragment() {
                 .map(ApiFunction())
                 .autoDisposable(mScopeProvider)
                 .subscribe(Consumer {
+                    if (it.questionList.isEmpty()) {
+                        ToastUtils.showToast("暂无$title")
+                        return@Consumer
+                    }
                     context?.startActivity<ExerciseActivity>("questionWrapper" to it)
                 }, ApiConsumer())
-
-
     }
-
-
-    private fun <T> handleQuestionList(observable: Observable<T>) {}
 
 
 }

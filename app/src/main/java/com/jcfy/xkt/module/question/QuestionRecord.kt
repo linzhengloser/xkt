@@ -9,11 +9,13 @@ import android.os.Parcelable
 data class QuestionRecord(
         val questionId: Int,
         val selectionIndexArray: ArrayList<Int> = arrayListOf(),
-        val isShowAnswer: Boolean = true
+        var isShowAnswer: Boolean = true,
+        var isOpenEyeProtectionMode: Boolean = false
 ) : Parcelable {
     constructor(source: Parcel) : this(
             source.readInt(),
             ArrayList<Int>().apply { source.readList(this, Int::class.java.classLoader) },
+            1 == source.readInt(),
             1 == source.readInt()
     )
 
@@ -23,6 +25,7 @@ data class QuestionRecord(
         writeInt(questionId)
         writeList(selectionIndexArray)
         writeInt((if (isShowAnswer) 1 else 0))
+        writeInt((if (isOpenEyeProtectionMode) 1 else 0))
     }
 
     companion object {

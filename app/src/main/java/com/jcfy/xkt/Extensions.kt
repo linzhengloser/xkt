@@ -7,6 +7,7 @@ import android.support.v4.content.ContextCompat
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.jcfy.xkt.api.*
@@ -88,6 +89,11 @@ inline fun Items.addPageData(isRefresh: Boolean, item: Any) {
 }
 
 
+inline fun ImageView.bindCollection(isCollection:Int){
+    imageResource = if(isCollection == 1) R.drawable.exercise_collection_press else R.drawable.exercise_collection_normal
+}
+
+
 fun TextView.bindQuestionType(type: Int) {
     var backgroundResId: Int = when (type) {
         QUESTION_TYPE_SINGLE -> {
@@ -146,7 +152,7 @@ fun LinearLayout.bindQuestionOptions(optionsList: List<Options>) {
 
 inline fun Int.page(isRefresh: Boolean) = if (isRefresh) 1 else plus(1)
 
-inline fun View.bindBoolean2Visibility(isVisibility: Boolean) = if (isVisibility) visibility = View.VISIBLE else View.GONE
+inline fun View.bindBoolean2Visibility(isVisibility: Boolean) = if (isVisibility) visibility = View.VISIBLE else visibility = View.GONE
 
 object Utils {
 

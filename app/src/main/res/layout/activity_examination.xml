@@ -93,7 +93,7 @@
             android:paddingRight="14dp"
             app:layout_constraintBottom_toBottomOf="parent"
             android:background="@color/transparency"
-            android:src="@drawable/selector_exercise_color"/>
+            android:src="@drawable/selector_exercise_eye_protection_mode"/>
 
     <TextView
             android:id="@+id/tv_countdown"

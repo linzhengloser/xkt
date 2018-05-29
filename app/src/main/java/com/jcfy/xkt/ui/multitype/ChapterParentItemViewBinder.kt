@@ -16,12 +16,18 @@ import kotlinx.android.synthetic.main.item_chapter_parent.view.*
 class ChapterParentItemViewBinder(onParentClickListener: OnParentClickListener<Writings>) : ParentItemViewBinder<Writings, ChapterParentItemViewBinder.ChapterParentViewHolder>(onParentClickListener) {
     override fun onBindViewHolder(holder: ChapterParentViewHolder, item: Writings) {
         holder.itemView.apply {
-            tv_title.text  = item.writingsName
+            tv_title.text = item.writingsName
+            if(item.isExpend)
+                iv_arrow.setImageResource(R.drawable.chapter_parent_open)
+            else
+                iv_arrow.setImageResource(R.drawable.chapter_parent_close)
+            setOnClickListener {
+                onParentClickListener.onParentClick(it, item)
+            }
         }
     }
 
-    override fun onCreateViewHolder(inflater: LayoutInflater, parent: ViewGroup)
-     = ChapterParentViewHolder(inflater.inflate(R.layout.item_chapter_parent,parent,false))
+    override fun onCreateViewHolder(inflater: LayoutInflater, parent: ViewGroup) = ChapterParentViewHolder(inflater.inflate(R.layout.item_chapter_parent, parent, false))
 
     class ChapterParentViewHolder(itemView: View) : BaseViewHolder(itemView)
 

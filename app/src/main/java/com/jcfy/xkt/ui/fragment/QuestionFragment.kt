@@ -1,16 +1,14 @@
 package com.jcfy.xkt.ui.fragment
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.jcfy.xkt.R
-import com.jcfy.xkt.answerOptionsString
+import com.jcfy.xkt.*
 import com.jcfy.xkt.api.QUESTION_TYPE_MULTI
 import com.jcfy.xkt.base.BaseFragment
-import com.jcfy.xkt.bindQuestionOptions
-import com.jcfy.xkt.bindQuestionType
 import com.jcfy.xkt.module.question.Question
 import com.jcfy.xkt.module.question.QuestionRecord
 import com.jcfy.xkt.utils.selection.QuestionOptionTextViewSelectionBinder
@@ -52,7 +50,6 @@ class QuestionFragment : BaseFragment() {
         mSelectionAdapter.setListener { index, toggle ->
             saveQuestionRecord(index, toggle)
         }
-
     }
 
     private fun saveQuestionRecord(index: Int, toggle: Boolean) {
@@ -73,8 +70,6 @@ class QuestionFragment : BaseFragment() {
         tv_answer_resolve.text = "答案解析：$mQuestion.explanation"
         ll_options.bindQuestionOptions(mQuestion.optionsList)
         mSelectionAdapter.bindLayout(ll_options)
-        println(mQuestion.content)
-        println(mQuestion.type)
         if (mQuestion.type != QUESTION_TYPE_MULTI)
             mSelectionAdapter.singleSelection()
         restoreData()
@@ -87,6 +82,8 @@ class QuestionFragment : BaseFragment() {
         mQuestionRecord.selectionIndexArray.forEach {
             mSelectionAdapter.setSelection(it)
         }
+        toggleEyeProtectionMode()
+        toggleShowAnswer()
     }
 
     override fun onStart() {
@@ -100,8 +97,22 @@ class QuestionFragment : BaseFragment() {
     }
 
     @Subscribe
-    public fun onMessageEvent(event: String) {
+    public fun onToolBarUpdatedEvent(event: String) {
+        when (event) {
+            "toggleEyeProtectionMode" -> toggleEyeProtectionMode()
+            "toggleShowAnswer" -> toggleShowAnswer()
+        }
+    }
 
+    private fun toggleShowAnswer() {
+        tv_view_answer.bindBoolean2Visibility(mQuestionRecord.isShowAnswer)
+        tv_success_answer.bindBoolean2Visibility(mQuestionRecord.isShowAnswer)
+        tv_answer_resolve.bindBoolean2Visibility(mQuestionRecord.isShowAnswer)
+    }
+
+    private fun toggleEyeProtectionMode() {
+        val backgroundColor = if (mQuestionRecord.isOpenEyeProtectionMode) Color.parseColor("#c7edcc") else Color.WHITE
+        cl_root.setBackgroundColor(backgroundColor)
     }
 
     companion object {

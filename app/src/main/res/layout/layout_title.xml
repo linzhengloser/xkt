@@ -36,7 +36,7 @@
             android:layout_height="match_parent"
             app:layout_constraintRight_toRightOf="parent"
             android:visibility="gone"
-            tools:src="@drawable/exercise_eye_protection_close"
+            tools:src="@drawable/exercise_question_not_view_answer"
             android:scaleType="center"
             />
 
