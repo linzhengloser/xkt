@@ -22,13 +22,13 @@ open class BaseActivity : LibraryBaseActivity(), Callback.OnReloadListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        iv_back?.setOnClickListener {
-            finish()
-        }
     }
 
     override fun setContentView(layoutResID: Int) {
         super.setContentView(layoutResID)
+        iv_back?.setOnClickListener {
+            finish()
+        }
 //        var childCount = (findViewById<ViewGroup>(Window.ID_ANDROID_CONTENT).getChildAt(0) as ViewGroup).childCount
 //        mLoadService = LoadSir.getDefault().register(this, this)
     }

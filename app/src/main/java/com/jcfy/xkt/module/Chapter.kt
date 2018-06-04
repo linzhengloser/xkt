@@ -18,8 +18,13 @@ data class Writings(
 ) : Parent()
 
 data class Chapter(
-        val maxId: Int,
-        val isFree: Int,
         val chapterId: Int,
-        val chapterName: String
+        val chapterName: String,
+        val createTime: Long,
+        val isFree: Int,
+        val maxId: String,
+        val random: Double,
+        val schedule: String,
+        val status: Int,
+        val writingsId: Int
 ) : Child()

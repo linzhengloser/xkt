@@ -15,6 +15,7 @@ import com.jcfy.xkt.ui.activity.BasicInformationActivity
 import com.jcfy.xkt.ui.activity.MessageCenterActivity
 import com.jcfy.xkt.ui.activity.RechargeCenterActivity
 import com.jcfy.xkt.ui.activity.SettingActivity
+import com.jcfy.xkt.ui.activity.mine.ScheduleActivity
 import com.jcfy.xkt.ui.dialog.ShareDialog
 import com.jcfy.xkt.ui.multitype.MineHeaderItemViewBinder
 import com.jcfy.xkt.ui.multitype.MineItemViewBinder
@@ -71,7 +72,6 @@ class MineFragment : BaseListFragment(), RefreshListener {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
         mAdapter.register(String::class, MineHeaderItemViewBinder())
         mAdapter.register(Mine::class, MineItemViewBinder())
 
@@ -104,6 +104,13 @@ class MineFragment : BaseListFragment(), RefreshListener {
             SHARE -> ShareDialog().show(childFragmentManager)
             SETTING -> startActivity<SettingActivity>()
             RECHARGE_CENTER -> startActivity<RechargeCenterActivity>()
+        }
+    }
+
+    @Subscribe
+    public fun onMessageEvent(str: String) {
+        when(str){
+            "schedule" -> startActivity<ScheduleActivity>()
         }
     }
 

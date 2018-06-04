@@ -150,9 +150,9 @@ public class SelectionAdapter implements ViewPager.OnPageChangeListener {
     @Override
     public void onPageSelected(int position) {
         int newPosition = position % mBindLayout.getChildCount();
-
         setSingleChild(newPosition);
         setSelection(newPosition);
+        mListener.onSelection(position, isChildViewSelection(mBindLayout.getChildAt(position)));
     }
 
     @Override

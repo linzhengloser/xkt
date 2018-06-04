@@ -8,10 +8,8 @@
         android:layout_height="54dp">
 
 
-
-
     <TextView
-            android:id="@+id/tv_number"
+            android:id="@+id/tv_title"
             android:textColor="#707070"
             android:textSize="16sp"
             app:layout_constraintTop_toTopOf="parent"
@@ -20,20 +18,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
-            android:text="章节一"/>
+            android:text="章节一 章节名称"/>
 
     <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:textColor="#707070"
-            app:layout_constraintLeft_toRightOf="@id/tv_number"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginLeft="10dp"
-            android:text="章节名称"/>
-
-    <TextView
+            android:id="@+id/tv_schedule"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintRight_toRightOf="parent"

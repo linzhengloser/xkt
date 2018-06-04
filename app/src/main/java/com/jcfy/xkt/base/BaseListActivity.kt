@@ -11,6 +11,7 @@ import com.kingja.loadsir.callback.Callback
 import com.kingja.loadsir.core.LoadService
 import com.kingja.loadsir.core.LoadSir
 import com.lz.baselibrary.base.LibraryBaseListActivity
+import kotlinx.android.synthetic.main.layout_title.*
 
 /**
  * @author linzheng
@@ -21,6 +22,9 @@ open class BaseListActivity : LibraryBaseListActivity(), Callback.OnReloadListen
 
     override fun setContentView(layoutResID: Int) {
         super.setContentView(layoutResID)
+        iv_back?.setOnClickListener {
+            finish()
+        }
         val rootView = findViewById<ViewGroup>(Window.ID_ANDROID_CONTENT).getChildAt(0)
         mLoadService = LoadSir.getDefault().register(Utils.findNeedRegisterView(rootView), this)
     }

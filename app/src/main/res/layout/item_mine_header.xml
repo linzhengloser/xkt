@@ -84,6 +84,8 @@
             android:orientation="horizontal">
 
         <FrameLayout
+                android:id="@+id/fl_schedule"
+                android:tag="schedule"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1">

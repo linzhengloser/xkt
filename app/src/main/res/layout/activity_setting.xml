@@ -165,6 +165,7 @@
 
 
     <TextView
+            android:id="@+id/tv_logout"
             android:layout_width="273dp"
             android:layout_height="53dp"
             android:gravity="center"

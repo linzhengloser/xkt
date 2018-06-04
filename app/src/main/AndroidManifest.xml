@@ -56,8 +56,15 @@
         <!-- 练习 -->
         <activity android:name=".ui.activity.ExerciseActivity"/>
 
+        <!-- 考试 -->
+        <activity android:name=".ui.activity.ExaminationActivity"/>
+
         <!-- 章节练习 -->
         <activity android:name=".ui.activity.ChapterExerciseActivity"/>
+
+        <!-- 进度 -->
+        <activity android:name=".ui.activity.mine.ScheduleActivity"/>
+
 
     </application>
 
