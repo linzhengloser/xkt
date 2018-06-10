@@ -5,7 +5,7 @@ import com.jcfy.xkt.androidScheduler
 import com.jcfy.xkt.api.ApiConsumer
 import com.jcfy.xkt.api.MineApi
 import com.jcfy.xkt.setTitleText
-import com.jcfy.xkt.ui.fragment.ScheduleFragment
+import com.jcfy.xkt.ui.fragment.WrongOrCollectionQuestionFragment
 import com.jcfy.xkt.ui.itemdecoration.MyViewPagerAdapter
 import com.jcfy.xkt.utils.ApiFunction
 import com.lz.baselibrary.network.Api
@@ -17,21 +17,24 @@ import org.greenrobot.eventbus.EventBus
 /**
  * @author linzheng
  */
-class ScheduleActivity : PrimaryOrIntermediateActivity() {
+class WrongOrCollectionQuestionActivity : PrimaryOrIntermediateActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setTitleText("进度")
-        vp_schedule.adapter = MyViewPagerAdapter(supportFragmentManager, listOf(
-                ScheduleFragment.newInstance(1),
-                ScheduleFragment.newInstance(2)
-        ))
+        setTitleText(if(intent.getIntExtra("type",1) == 1) "错题" else "收藏")
+        vp_schedule.adapter = MyViewPagerAdapter(
+                supportFragmentManager,
+                listOf(
+                        WrongOrCollectionQuestionFragment.newInstance(1),
+                        WrongOrCollectionQuestionFragment.newInstance(2)
+                )
+        )
         getData()
     }
 
     override fun getData() {
         val api = Api.createApi(MineApi::class)
-        api.getSchedule()
+        api.getWrongQuestion()
                 .map(ApiFunction())
                 .observeOn(androidScheduler)
                 .autoDisposable(mScopeProvider)

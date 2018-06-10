@@ -24,10 +24,15 @@ class ExaminationActivity : QuestionActivity() {
 
     private val mTimeLeft = 30 * 60 * 1000
 
+    override val mType: Int
+        get() = 1
+
+    override val mContentViewLayoutId: Int
+        get() = R.layout.activity_examination
+
     private lateinit var mCountDownDisposable: Disposable
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        mContentViewLayoutId = R.layout.activity_examination
         mIsShowAnswer = false
         super.onCreate(savedInstanceState)
         setTitleText("考试")

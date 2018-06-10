@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import com.jcfy.xkt.R
 import com.jcfy.xkt.module.mine.ScheduleWrapper
 import com.lz.baselibrary.base.BaseViewHolder
+import kotlinx.android.synthetic.main.item_schedule_header.view.*
 import me.drakeet.multitype.ItemViewBinder
 
 /**
@@ -16,7 +17,9 @@ class ScheduleHeaderItemViewBinder : ItemViewBinder<ScheduleWrapper, ScheduleHea
      = ScheduleHeaderViewHolder(inflater.inflate(R.layout.item_schedule_header,parent,false))
 
     override fun onBindViewHolder(holder: ScheduleHeaderViewHolder, item: ScheduleWrapper) {
-
+        holder.itemView.apply {
+            tv_schedule.text = item.baseSchedule
+        }
     }
 
     class ScheduleHeaderViewHolder(itemView : View) : BaseViewHolder(itemView)

@@ -32,8 +32,13 @@ class ExerciseActivity : QuestionActivity(), View.OnClickListener {
 
     private lateinit var mAutomaticDisposable: Disposable
 
+    override val mType: Int
+        get() = 0
+
+    override val mContentViewLayoutId: Int
+        get() = R.layout.activity_exercise
+
     override fun onCreate(savedInstanceState: Bundle?) {
-        mContentViewLayoutId = R.layout.activity_exercise
         mIsShowAnswer = true
         super.onCreate(savedInstanceState)
         setTitleText("练习")

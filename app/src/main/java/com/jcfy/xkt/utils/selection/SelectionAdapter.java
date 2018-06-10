@@ -19,6 +19,8 @@ public class SelectionAdapter implements ViewPager.OnPageChangeListener {
 
     private ViewGroup mBindLayout;
 
+    private ViewPager mBindViewPager;
+
     private int mSelectionIndex = -1;
 
     private OnSelectionListener mListener;
@@ -54,6 +56,8 @@ public class SelectionAdapter implements ViewPager.OnPageChangeListener {
                     setChildViewOrChildViewGroup(finalIndex, finalChildView);
                     if (mListener != null)
                         mListener.onSelection(finalIndex, isChildViewSelection(finalChildView));
+                    if (mBindViewPager != null)
+                        mBindViewPager.setCurrentItem(finalIndex);
                 }
             });
         }
@@ -69,6 +73,7 @@ public class SelectionAdapter implements ViewPager.OnPageChangeListener {
 
     public void bindViewPager(ViewPager viewPager, ViewGroup bindLayout) {
         viewPager.addOnPageChangeListener(this);
+        mBindViewPager = viewPager;
         bindLayout(bindLayout, 0);
     }
 
@@ -118,7 +123,6 @@ public class SelectionAdapter implements ViewPager.OnPageChangeListener {
     }
 
     public void setSelection(int index) {
-//        if (mIsSingleSelection && mSelectionIndex == index) return;
         if (mIsSingleSelection) mSelectionIndex = index;
         setChildViewOrChildViewGroup(index, mBindLayout.getChildAt(index));
         mBindLayout.getChildAt(index).setTag("selection");
@@ -152,7 +156,8 @@ public class SelectionAdapter implements ViewPager.OnPageChangeListener {
         int newPosition = position % mBindLayout.getChildCount();
         setSingleChild(newPosition);
         setSelection(newPosition);
-        mListener.onSelection(position, isChildViewSelection(mBindLayout.getChildAt(position)));
+        if(mListener != null)
+            mListener.onSelection(position, isChildViewSelection(mBindLayout.getChildAt(position)));
     }
 
     @Override

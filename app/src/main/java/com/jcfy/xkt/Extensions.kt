@@ -89,10 +89,11 @@ inline fun Items.addPageData(isRefresh: Boolean, item: Any) {
 }
 
 
-inline fun ImageView.bindCollection(isCollection:Int){
-    imageResource = if(isCollection == 1) R.drawable.exercise_collection_press else R.drawable.exercise_collection_normal
+inline fun ImageView.bindCollection(isCollection: Int) {
+    imageResource = if (isCollection == 1) R.drawable.exercise_collection_press else R.drawable.exercise_collection_normal
 }
 
+inline fun String.parseSchedule() = substringBefore('%')
 
 fun TextView.bindQuestionType(type: Int) {
     var backgroundResId: Int = when (type) {
@@ -149,6 +150,16 @@ fun LinearLayout.bindQuestionOptions(optionsList: List<Options>) {
     }
 }
 
+inline fun TextView.bindAchievement(achievement: String) {
+    val achievementValue = achievement.toDoubleOrNull()
+    val backgroundResId = when {
+        achievementValue!! <= 70 -> R.drawable.shape_achievement_failed
+        achievementValue!! < 100 -> R.drawable.shape_achievement_pass
+        else -> R.drawable.shape_achievement_full_achievement
+    }
+    setBackgroundResource(backgroundResId)
+    text = "${achievement}分"
+}
 
 inline fun Int.page(isRefresh: Boolean) = if (isRefresh) 1 else plus(1)
 

@@ -1,4 +1,4 @@
-package com.jcfy.xkt.ui.multitype
+package com.jcfy.xkt.ui.multitype.mine
 
 import android.view.LayoutInflater
 import android.view.View

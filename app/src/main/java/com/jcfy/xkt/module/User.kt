@@ -22,7 +22,8 @@ data class User(
         var experience: String,
         var userId: Int,
         var userNumber: String,
-        var birthDate: String
+        var birthDate: String,
+        var token: String
 ) {
 
     override fun toString(): String {

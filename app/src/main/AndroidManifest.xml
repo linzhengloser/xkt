@@ -15,7 +15,8 @@
             android:roundIcon="@mipmap/ic_launcher"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+                android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -33,7 +34,7 @@
         <activity android:name=".ui.activity.ExaminationResultActivity"/>
 
         <!-- 基本信息 -->
-        <activity android:name=".ui.activity.BasicInformationActivity"/>
+        <activity android:name=".ui.activity.mine.BasicInformationActivity"/>
 
         <!-- 消息中心 -->
         <activity android:name=".ui.activity.MessageCenterActivity"/>
@@ -64,6 +65,11 @@
 
         <!-- 进度 -->
         <activity android:name=".ui.activity.mine.ScheduleActivity"/>
+
+        <!-- 错题 or 收藏 -->
+        <activity android:name=".ui.activity.mine.WrongOrCollectionQuestionActivity"/>
+
+        <activity android:name=".ui.activity.mine.AchievementActivity"/>
 
 
     </application>

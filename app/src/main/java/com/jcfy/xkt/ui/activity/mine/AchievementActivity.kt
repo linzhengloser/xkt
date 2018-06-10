@@ -5,7 +5,7 @@ import com.jcfy.xkt.androidScheduler
 import com.jcfy.xkt.api.ApiConsumer
 import com.jcfy.xkt.api.MineApi
 import com.jcfy.xkt.setTitleText
-import com.jcfy.xkt.ui.fragment.ScheduleFragment
+import com.jcfy.xkt.ui.fragment.AchievementFragment
 import com.jcfy.xkt.ui.itemdecoration.MyViewPagerAdapter
 import com.jcfy.xkt.utils.ApiFunction
 import com.lz.baselibrary.network.Api
@@ -17,21 +17,24 @@ import org.greenrobot.eventbus.EventBus
 /**
  * @author linzheng
  */
-class ScheduleActivity : PrimaryOrIntermediateActivity() {
+class AchievementActivity : PrimaryOrIntermediateActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setTitleText("进度")
-        vp_schedule.adapter = MyViewPagerAdapter(supportFragmentManager, listOf(
-                ScheduleFragment.newInstance(1),
-                ScheduleFragment.newInstance(2)
-        ))
+        setTitleText("成绩")
+        vp_schedule.adapter = MyViewPagerAdapter(
+                supportFragmentManager,
+                listOf(
+                        AchievementFragment.newInstance(1),
+                        AchievementFragment.newInstance(2)
+                )
+        )
         getData()
     }
 
     override fun getData() {
         val api = Api.createApi(MineApi::class)
-        api.getSchedule()
+        api.getAchievement()
                 .map(ApiFunction())
                 .observeOn(androidScheduler)
                 .autoDisposable(mScopeProvider)

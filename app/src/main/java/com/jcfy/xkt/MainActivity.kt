@@ -35,6 +35,7 @@ class MainActivity : BaseActivity(), ViewPager.OnPageChangeListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        layoutInflater
         goneBack()
         setTitleText(mTitleTextList[0])
         vp_main.offscreenPageLimit = mFragmentList.size

@@ -17,7 +17,7 @@ import org.greenrobot.eventbus.EventBus
 /**
  * @author linzheng
  */
-open class QuestionActivity : BaseActivity(), View.OnClickListener, ViewPager.OnPageChangeListener {
+open abstract class QuestionActivity : BaseActivity(), View.OnClickListener, ViewPager.OnPageChangeListener {
 
     protected val mToolBarButtonSelectors = mapOf(
             "collection" to Selector(R.drawable.exercise_collection_normal, R.drawable.exercise_collection_press),
@@ -28,15 +28,27 @@ open class QuestionActivity : BaseActivity(), View.OnClickListener, ViewPager.On
 
     protected val mFragmentList = mutableListOf<QuestionFragment>()
 
+    /**
+     * 数据对象
+     */
     protected lateinit var mQuestionWrapper: QuestionWrapper
 
+    /**
+     * 答题记录
+     */
     protected var mQuestionRecordList = mutableListOf<QuestionRecord>()
 
+    /**
+     * 否显示答案
+     */
     protected var mIsShowAnswer = false
 
     protected var mCurrentQuestionIndex = 0
 
-    protected var mContentViewLayoutId = 0
+    protected open val mContentViewLayoutId = 0
+
+    // 1 练习 2 考试
+    protected abstract val mType:Int
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -108,4 +120,12 @@ open class QuestionActivity : BaseActivity(), View.OnClickListener, ViewPager.On
             EventBus.getDefault().post("toggleEyeProtectionMode")
         }
     }
+
+    override fun onBackPressed() {
+        //提交做题记录
+
+    }
+
+
+
 }

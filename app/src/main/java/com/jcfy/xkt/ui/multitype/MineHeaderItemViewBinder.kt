@@ -5,11 +5,13 @@ import android.view.View
 import android.view.ViewGroup
 import com.jcfy.xkt.R
 import com.jcfy.xkt.ui.activity.LoginActivity
+import com.jcfy.xkt.ui.activity.mine.AchievementActivity
+import com.jcfy.xkt.ui.activity.mine.ScheduleActivity
+import com.jcfy.xkt.ui.activity.mine.WrongOrCollectionQuestionActivity
 import com.jcfy.xkt.utils.UserUtils
 import com.lz.baselibrary.base.BaseViewHolder
 import kotlinx.android.synthetic.main.item_mine_header.view.*
 import me.drakeet.multitype.ItemViewBinder
-import org.greenrobot.eventbus.EventBus
 import org.jetbrains.anko.startActivity
 
 /**
@@ -30,10 +32,21 @@ class MineHeaderItemViewBinder : ItemViewBinder<String, MineHeaderItemViewBinder
 
     class MineHeaderViewHolder(itemView: View) : BaseViewHolder(itemView), View.OnClickListener {
         override fun onClick(v: View?) {
-            EventBus.getDefault().post(v?.tag.toString())
+            when (v?.id) {
+                R.id.fl_schedule -> v.context.startActivity<ScheduleActivity>()
+                R.id.fl_wrong_question -> v.context.startActivity<WrongOrCollectionQuestionActivity>()
+                R.id.fl_collection -> v.context.startActivity<WrongOrCollectionQuestionActivity>()
+                R.id.fl_achievement -> v.context.startActivity<AchievementActivity>()
+            }
         }
+
         init {
-            itemView.fl_schedule.setOnClickListener(this)
+            itemView.apply {
+                fl_achievement.setOnClickListener(this@MineHeaderViewHolder)
+                fl_schedule.setOnClickListener(this@MineHeaderViewHolder)
+                fl_wrong_question.setOnClickListener(this@MineHeaderViewHolder)
+                fl_collection.setOnClickListener(this@MineHeaderViewHolder)
+            }
         }
     }
 

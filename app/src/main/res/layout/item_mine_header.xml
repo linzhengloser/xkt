@@ -115,8 +115,10 @@
         </FrameLayout>
 
         <FrameLayout
+                android:id="@+id/fl_wrong_question"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:tag="wrongQuestion"
                 android:layout_weight="1">
 
             <LinearLayout
@@ -144,7 +146,9 @@
         </FrameLayout>
 
         <FrameLayout
+                android:id="@+id/fl_collection"
                 android:layout_width="0dp"
+                android:tag="collection"
                 android:layout_height="match_parent"
                 android:layout_weight="1">
 
@@ -173,6 +177,7 @@
         </FrameLayout>
 
         <FrameLayout
+                android:id="@+id/fl_achievement"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1">

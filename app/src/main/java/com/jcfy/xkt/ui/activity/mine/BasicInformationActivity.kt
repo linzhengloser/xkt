@@ -1,4 +1,4 @@
-package com.jcfy.xkt.ui.activity
+package com.jcfy.xkt.ui.activity.mine
 
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
@@ -7,7 +7,7 @@ import com.jcfy.xkt.base.BaseListActivity
 import com.jcfy.xkt.dp
 import com.jcfy.xkt.module.BasicInformation
 import com.jcfy.xkt.setTitleText
-import com.jcfy.xkt.ui.multitype.BasicInformationItemViewBinder
+import com.jcfy.xkt.ui.multitype.mine.BasicInformationItemViewBinder
 import com.jcfy.xkt.utils.UserUtils
 import com.lz.baselibrary.view.VerticalItemDecoration
 import kotlinx.android.synthetic.main.activity_basic_information.*
@@ -47,7 +47,8 @@ class BasicInformationActivity : BaseListActivity() {
             mItems.add(BasicInformation("城市", user.city))
             mItems.add(BasicInformation("修改密码", ""))
             showSuccessLayout()
-        }, 2000)
+            mAdapter.notifyDataSetChanged()
+        }, 1000)
     }
 
     private fun getSex(sex: String) = when (sex) {

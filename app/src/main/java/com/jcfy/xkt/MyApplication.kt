@@ -3,9 +3,15 @@ package com.jcfy.xkt
 import com.jcfy.xkt.ui.loadsir.EmptyCallback
 import com.jcfy.xkt.ui.loadsir.ErrorCallback
 import com.jcfy.xkt.ui.loadsir.LoadingCallback
+import com.jcfy.xkt.utils.TokenInterceptor
 import com.kingja.loadsir.core.LoadSir
 import com.lz.baselibrary.LibraryApplication
 import com.lz.baselibrary.network.Api
+import okhttp3.Interceptor
+import okhttp3.logging.HttpLoggingInterceptor
+import timber.log.Timber
+import timber.log.Timber.DebugTree
+
 
 /**
  * @author linzheng
@@ -14,7 +20,7 @@ class MyApplication : LibraryApplication() {
 
     override fun onCreate() {
         super.onCreate()
-        Api.baseUrl = "http://wx.119kst.com/client/"
+        Api.BASE_URL = "http://wx.119kst.com/client/"
 
         LoadSir.beginBuilder()
                 .addCallback(LoadingCallback())
@@ -22,6 +28,16 @@ class MyApplication : LibraryApplication() {
                 .addCallback(EmptyCallback())
                 .setDefaultCallback(LoadingCallback::class.java)
                 .commit()
+        Timber.plant(DebugTree())
+    }
+
+    override fun buildInterceptor(): List<Interceptor> {
+        return listOf(
+                TokenInterceptor(),
+                HttpLoggingInterceptor(HttpLoggingInterceptor.Logger {
+                    Timber.tag("OkHttp").d(it)
+                }).setLevel(HttpLoggingInterceptor.Level.BODY)
+        )
     }
 
 }

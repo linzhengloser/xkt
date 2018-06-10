@@ -20,12 +20,13 @@
             android:layout_marginLeft="18dp"
             android:drawablePadding="14dp"
             android:drawableLeft="@drawable/chapter_parent_icon"
-            android:text="第一章儿童消防绘画作文大赛"/>
+            tools:text="第一章儿童消防绘画作文大赛"/>
 
     <TextView
+            android:id="@+id/tv_schedule"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="13"
+            tools:text="13"
             android:layout_marginRight="12dp"
             app:layout_constraintRight_toLeftOf="@id/iv_expand_status"
             app:layout_constraintTop_toTopOf="parent"

@@ -11,6 +11,8 @@ import android.view.ViewGroup
 import com.jcfy.xkt.R
 import com.jcfy.xkt.androidScheduler
 import com.jcfy.xkt.api.ApiConsumer
+import com.jcfy.xkt.api.ExaminationApi
+import com.jcfy.xkt.api.ExerciseApi
 import com.jcfy.xkt.api.Response
 import com.jcfy.xkt.base.BaseListFragment
 import com.jcfy.xkt.module.ExerciseExaminationMenu
@@ -21,6 +23,7 @@ import com.jcfy.xkt.ui.itemdecoration.MyViewPagerAdapter
 import com.jcfy.xkt.utils.ApiFunction
 import com.jcfy.xkt.utils.selection.SelectionAdapter
 import com.jcfy.xkt.utils.selection.TabTextViewSectionBinder
+import com.lz.baselibrary.network.Api
 import com.lz.baselibrary.utils.ToastUtils
 import com.uber.autodispose.kotlin.autoDisposable
 import io.reactivex.Observable
@@ -83,7 +86,6 @@ open class ExerciseExaminationFragment : BaseListFragment() {
         register(AppCompatTextView::class.java, TabTextViewSectionBinder())
         singleSelection()
         setListener { index, _ ->
-            vp_menu.currentItem = index
             mLevel = index
         }
     }
@@ -93,8 +95,12 @@ open class ExerciseExaminationFragment : BaseListFragment() {
                 .setTitle("请选择题目类型")
                 .setItems(arrayOf("单选", "多选", "判断"), { dialogInterface: DialogInterface, i: Int ->
                     dialogInterface.dismiss()
-//                    val api = Api.createApi(ExerciseApi::class)
-//                    handleQuestionList(api.getSpecialQuestionList(i + 1, mLevel), SPECIAL_EXERCISE)
+                    val observable = if (mType == 1) {
+                        Api.createApi(ExerciseApi::class).getSpecialQuestionList(mLevel, i + 1)
+                    } else {
+                        Api.createApi(ExaminationApi::class).getSpecialTrengthenQuestionList(mLevel, i + 1)
+                    }
+                    handleQuestionList(observable, SPECIAL_EXERCISE)
                 })
                 .create()
     }
@@ -148,9 +154,9 @@ open class ExerciseExaminationFragment : BaseListFragment() {
                         ToastUtils.showToast("暂无$title")
                         return@Consumer
                     }
-                    if(mType == 1){
+                    if (mType == 1) {
                         context?.startActivity<ExerciseActivity>("questionWrapper" to it)
-                    }else{
+                    } else {
                         context?.startActivity<ExaminationActivity>("questionWrapper" to it)
                     }
                 }, ApiConsumer())

@@ -1,10 +1,11 @@
 package com.jcfy.xkt.api
 
+import com.jcfy.xkt.module.mine.AchievementWrapper
 import com.jcfy.xkt.module.mine.HelpWrapper
 import com.jcfy.xkt.module.mine.ScheduleWrapper
 import io.reactivex.Observable
 import retrofit2.http.Field
-import retrofit2.http.Headers
+import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
 
 
@@ -16,7 +17,6 @@ interface MineApi {
      * 获取进度
      */
     @POST("mine/schedule.do")
-    @Headers("wiexin_session_user: 0beb34f9-98a3-805f-1116-7c9377b26fa1")
     fun getSchedule(
     ): Observable<Response<ScheduleWrapper>>
 
@@ -36,7 +36,7 @@ interface MineApi {
      * 获取成绩
      */
     @POST("mine/performance.do")
-    fun getScore(): Observable<Response<ScheduleWrapper>>
+    fun getAchievement(): Observable<Response<AchievementWrapper>>
 
     /**
      * 充值中心
@@ -48,6 +48,7 @@ interface MineApi {
      * 消息中心
      */
     @POST("mine/voucherCenter.do")
+    @FormUrlEncoded
     fun getMessageCenter(
             @Field("type") type: Int,
             @Field(PAGE_KEY) page: String = PAGE_DEFAULT_VALUE,

@@ -7,19 +7,19 @@
         android:layout_height="172dp"
         android:background="@drawable/schedule_header_bg">
 
-    <SeekBar
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:paddingStart="0dp"
-            android:paddingEnd="0dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:max="100"
-            android:progress="50"
-            style="Seek"
-            />
+    <!--<SeekBar-->
+            <!--android:layout_width="120dp"-->
+            <!--android:layout_height="120dp"-->
+            <!--android:paddingStart="0dp"-->
+            <!--android:paddingEnd="0dp"-->
+            <!--app:layout_constraintLeft_toLeftOf="parent"-->
+            <!--app:layout_constraintRight_toRightOf="parent"-->
+            <!--app:layout_constraintTop_toTopOf="parent"-->
+            <!--app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--android:max="100"-->
+            <!--android:progress="50"-->
+            <!--style="Seek"-->
+            <!--/>-->
 
     <TextView
             android:id="@+id/tv_schedule"

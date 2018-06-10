@@ -11,11 +11,10 @@ import android.view.ViewGroup
 import com.jcfy.xkt.R
 import com.jcfy.xkt.base.BaseListFragment
 import com.jcfy.xkt.module.Mine
-import com.jcfy.xkt.ui.activity.BasicInformationActivity
 import com.jcfy.xkt.ui.activity.MessageCenterActivity
 import com.jcfy.xkt.ui.activity.RechargeCenterActivity
 import com.jcfy.xkt.ui.activity.SettingActivity
-import com.jcfy.xkt.ui.activity.mine.ScheduleActivity
+import com.jcfy.xkt.ui.activity.mine.BasicInformationActivity
 import com.jcfy.xkt.ui.dialog.ShareDialog
 import com.jcfy.xkt.ui.multitype.MineHeaderItemViewBinder
 import com.jcfy.xkt.ui.multitype.MineItemViewBinder
@@ -104,13 +103,6 @@ class MineFragment : BaseListFragment(), RefreshListener {
             SHARE -> ShareDialog().show(childFragmentManager)
             SETTING -> startActivity<SettingActivity>()
             RECHARGE_CENTER -> startActivity<RechargeCenterActivity>()
-        }
-    }
-
-    @Subscribe
-    public fun onMessageEvent(str: String) {
-        when(str){
-            "schedule" -> startActivity<ScheduleActivity>()
         }
     }
 
