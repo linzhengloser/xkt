@@ -2,6 +2,7 @@ package com.jcfy.xkt.api
 
 import com.jcfy.xkt.module.mine.AchievementWrapper
 import com.jcfy.xkt.module.mine.HelpWrapper
+import com.jcfy.xkt.module.mine.RechargeWrapper
 import com.jcfy.xkt.module.mine.ScheduleWrapper
 import io.reactivex.Observable
 import retrofit2.http.Field
@@ -42,7 +43,7 @@ interface MineApi {
      * 充值中心
      */
     @POST("mine/voucherCenter.do")
-    fun getRechargeCenter(): Observable<Response<Any>>
+    fun getRechargeCenter(): Observable<Response<RechargeWrapper>>
 
     /**
      * 消息中心

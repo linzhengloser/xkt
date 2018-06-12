@@ -19,9 +19,12 @@ import org.greenrobot.eventbus.EventBus
  */
 class WrongOrCollectionQuestionActivity : PrimaryOrIntermediateActivity() {
 
+    private var mType = 1
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setTitleText(if(intent.getIntExtra("type",1) == 1) "错题" else "收藏")
+        mType = intent.getIntExtra("type", 1)
+        setTitleText(if (mType == 1) "错题" else "收藏")
         vp_schedule.adapter = MyViewPagerAdapter(
                 supportFragmentManager,
                 listOf(
@@ -34,7 +37,8 @@ class WrongOrCollectionQuestionActivity : PrimaryOrIntermediateActivity() {
 
     override fun getData() {
         val api = Api.createApi(MineApi::class)
-        api.getWrongQuestion()
+        val observable = if (mType == 1) api.getWrongQuestion() else api.getCollection()
+        observable
                 .map(ApiFunction())
                 .observeOn(androidScheduler)
                 .autoDisposable(mScopeProvider)

@@ -4,13 +4,12 @@ package com.jcfy.xkt.module.mine
  * @author linzheng
  */
 
-
-data class RechargeCenterWrapper(
-        val rechargeB: List<RechargeCenter>,
-        val rechargeA: List<RechargeCenter>
+data class RechargeWrapper(
+        val rechargeB: List<Recharge>,
+        val rechargeA: List<Recharge>
 )
 
-data class RechargeCenter(
+data class Recharge(
         val duration: Int,
         val grade: Int,
         val name: String,
@@ -18,5 +17,6 @@ data class RechargeCenter(
         val preferentialPrice: Int,
         val rate: Int,
         val rechargeId: Int,
-        val status: Int
+        val status: Int,
+        val isOddNumber: Boolean = true
 )

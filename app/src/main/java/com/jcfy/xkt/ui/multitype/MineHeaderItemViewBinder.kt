@@ -34,8 +34,8 @@ class MineHeaderItemViewBinder : ItemViewBinder<String, MineHeaderItemViewBinder
         override fun onClick(v: View?) {
             when (v?.id) {
                 R.id.fl_schedule -> v.context.startActivity<ScheduleActivity>()
-                R.id.fl_wrong_question -> v.context.startActivity<WrongOrCollectionQuestionActivity>()
-                R.id.fl_collection -> v.context.startActivity<WrongOrCollectionQuestionActivity>()
+                R.id.fl_wrong_question -> v.context.startActivity<WrongOrCollectionQuestionActivity>("type" to 1)
+                R.id.fl_collection -> v.context.startActivity<WrongOrCollectionQuestionActivity>("type" to 2)
                 R.id.fl_achievement -> v.context.startActivity<AchievementActivity>()
             }
         }
