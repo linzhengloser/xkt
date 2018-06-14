@@ -59,6 +59,7 @@ const val COLLECTION_EXERCISE = "收藏题库"
 
 open class ExerciseExaminationFragment : BaseListFragment() {
 
+    // 0 初级 1 中级
     protected var mLevel = 0
 
     // 1 练习 2 考试
@@ -93,15 +94,15 @@ open class ExerciseExaminationFragment : BaseListFragment() {
     protected val mSpecialExerciseDialog: AlertDialog  by lazy {
         AlertDialog.Builder(context!!)
                 .setTitle("请选择题目类型")
-                .setItems(arrayOf("单选", "多选", "判断"), { dialogInterface: DialogInterface, i: Int ->
+                .setItems(arrayOf("单选", "多选", "判断")) { dialogInterface: DialogInterface, i: Int ->
                     dialogInterface.dismiss()
                     val observable = if (mType == 1) {
                         Api.createApi(ExerciseApi::class).getSpecialQuestionList(mLevel, i + 1)
                     } else {
-                        Api.createApi(ExaminationApi::class).getSpecialTrengthenQuestionList(mLevel, i + 1)
+                        Api.createApi(ExaminationApi::class).getSpecialStrengthenQuestionList(mLevel, i + 1)
                     }
                     handleQuestionList(observable, SPECIAL_EXERCISE)
-                })
+                }
                 .create()
     }
 
@@ -157,7 +158,7 @@ open class ExerciseExaminationFragment : BaseListFragment() {
                     if (mType == 1) {
                         context?.startActivity<ExerciseActivity>("questionWrapper" to it)
                     } else {
-                        context?.startActivity<ExaminationActivity>("questionWrapper" to it)
+                        context?.startActivity<ExaminationActivity>("questionWrapper" to it,"type" to mLevel)
                     }
                 }, ApiConsumer())
     }

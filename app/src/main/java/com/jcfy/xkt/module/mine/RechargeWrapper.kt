@@ -18,5 +18,5 @@ data class Recharge(
         val rate: Int,
         val rechargeId: Int,
         val status: Int,
-        val isOddNumber: Boolean = true
+        var isOddNumber: Boolean = true
 )

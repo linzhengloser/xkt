@@ -19,7 +19,7 @@ interface ExaminationApi {
     @FormUrlEncoded
     fun getMockQuestionList(
             @Field("rank") type: Int,
-            @Field("tel") tel: String = UserUtils.user?.mobile!!
+            @Field("tel") tel: String? = UserUtils.user?.mobile
     ): Observable<Response<QuestionWrapper>>
 
     /**
@@ -29,7 +29,7 @@ interface ExaminationApi {
     @FormUrlEncoded
     fun getWrongQuestionStrengthenList(
             @Field("rank") type: Int,
-            @Field("tel") tel: String = UserUtils.user?.mobile!!
+            @Field("tel") tel: String? = UserUtils.user?.mobile
     ): Observable<Response<QuestionWrapper>>
 
     /**
@@ -37,10 +37,22 @@ interface ExaminationApi {
      */
     @POST("question/getSpecialTrengthenList.do")
     @FormUrlEncoded
-    fun getSpecialTrengthenQuestionList(
+    fun getSpecialStrengthenQuestionList(
             @Field("rank") type: Int,
             @Field("type") questionType: Int,
-            @Field("tel") tel: String = UserUtils.user?.mobile!!
+            @Field("tel") tel: String? = UserUtils.user?.mobile
     ): Observable<Response<QuestionWrapper>>
+
+
+    /**
+     * 提交答案
+     */
+    @POST("question/saveTestRecord.do")
+    @FormUrlEncoded
+    fun postAnswer(
+            @Field("rank") type: Int,
+            @Field("score") achievement: Float,
+            @Field("tel") tel: String? = UserUtils.user?.mobile
+    ): Observable<Response<Any>>
 
 }

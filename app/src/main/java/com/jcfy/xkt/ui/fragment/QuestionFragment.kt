@@ -16,6 +16,7 @@ import com.jcfy.xkt.utils.selection.SelectionAdapter
 import kotlinx.android.synthetic.main.fragment_question.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
+import org.jetbrains.anko.backgroundColor
 
 /**
  * @author linzheng
@@ -112,7 +113,7 @@ class QuestionFragment : BaseFragment() {
 
     private fun toggleEyeProtectionMode() {
         val backgroundColor = if (mQuestionRecord.isOpenEyeProtectionMode) Color.parseColor("#c7edcc") else Color.WHITE
-        cl_root.setBackgroundColor(backgroundColor)
+        sv_root.backgroundColor = backgroundColor
     }
 
     companion object {

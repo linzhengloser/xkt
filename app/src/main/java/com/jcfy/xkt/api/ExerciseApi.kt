@@ -21,7 +21,7 @@ interface ExerciseApi {
     @FormUrlEncoded
     fun getRandomQuestionList(
             @Field("type") type: Int,
-            @Field("tel") tel: String = UserUtils.user?.mobile!!
+            @Field("tel") tel: String? = UserUtils.user?.mobile
     ): Observable<Response<QuestionWrapper>>
 
 
@@ -32,7 +32,7 @@ interface ExerciseApi {
     @FormUrlEncoded
     fun getChapterList(
             @Field("type") type: Int,
-            @Field("tel") tel: String = UserUtils.user?.mobile!!
+            @Field("tel") tel: String? = UserUtils.user?.mobile
     ): Observable<Response<ChapterWrapper>>
 
     /**
@@ -42,7 +42,7 @@ interface ExerciseApi {
     @FormUrlEncoded
     fun getQuestionListByChapterId(
             @Field("chapterId") chapterId: Int,
-            @Field("tel") tel: String = UserUtils.user?.mobile!!
+            @Field("tel") tel: String? = UserUtils.user?.mobile
     ): Observable<Response<QuestionWrapper>>
 
 
@@ -53,7 +53,7 @@ interface ExerciseApi {
     @FormUrlEncoded
     fun getNotDoneQuestionList(
             @Field("type") type: Int,
-            @Field("tel") tel: String = UserUtils.user?.mobile!!
+            @Field("tel") tel: String? = UserUtils.user?.mobile
     ): Observable<Response<QuestionWrapper>>
 
     /**
@@ -62,9 +62,10 @@ interface ExerciseApi {
     @POST("question/saveRecord.do")
     @FormUrlEncoded
     fun saveDoQuestionRecord(
-            @Field("doList") successList: String,
-            @Field("errorList") wrongList: String
-    ): Response<Any>
+            @Field("doList") rightQuestionIds: String,
+            @Field("errorList") wrongQuestionIds: String,
+            @Field("tel") tel: String? = UserUtils.user?.mobile
+    ): Observable<Response<Any>>
 
     /**
      * 获取错题列表
@@ -84,14 +85,18 @@ interface ExerciseApi {
     @FormUrlEncoded
     fun getCollectionQuestionList(
             @Field("type") type: Int,
-            @Field("tel") tel: String = UserUtils.user?.mobile!!
+            @Field("tel") tel: String? = UserUtils.user?.mobile
     ): Observable<Response<QuestionWrapper>>
 
+    /**
+     * 获取专项练习列表
+     */
     @POST("question/getSpecialList.do")
     @FormUrlEncoded
     fun getSpecialQuestionList(
             @Field("type") type: Int,
-            @Field("rank") rank: Int
+            @Field("rank") rank: Int,
+            @Field("tel") tel: String? = UserUtils.user?.mobile
     ): Observable<Response<QuestionWrapper>>
 
 

@@ -3,6 +3,7 @@ package com.jcfy.xkt.ui.activity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import com.jcfy.xkt.*
+import com.jcfy.xkt.api.LIMIT_DEFAULT_VALUE
 import com.jcfy.xkt.api.MainApi
 import com.jcfy.xkt.base.BaseListActivity
 import com.jcfy.xkt.base.LoadListData
@@ -22,7 +23,7 @@ import me.drakeet.multitype.register
  */
 class InformationDetailActivity : BaseListActivity(), LoadListData, RefreshListener {
 
-    lateinit var mInformationId: String
+    private lateinit var mInformationId: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,6 +49,8 @@ class InformationDetailActivity : BaseListActivity(), LoadListData, RefreshListe
             mLoadService.showSuccess()
             mItems.clear()
             mItems.add(it.newsDetail)
+            if (it.recommendList.size < LIMIT_DEFAULT_VALUE.toInt())
+                srl_information_detail.isLoadMoreEnable(false)
             mItems.addAll(it.recommendList)
             mAdapter.notifyDataSetChanged()
         })

@@ -7,6 +7,7 @@ import com.jcfy.xkt.setTitleText
 import com.jcfy.xkt.utils.UserUtils
 import com.lz.baselibrary.utils.ToastUtils
 import kotlinx.android.synthetic.main.activity_setting.*
+import org.jetbrains.anko.startActivity
 
 /**
  * @author linzheng
@@ -22,6 +23,10 @@ class SettingActivity : BaseActivity() {
             UserUtils.clearUser()
             finish()
             ToastUtils.showToast("退出登录成功！")
+        }
+
+        ll_about_us.setOnClickListener {
+            startActivity<HelpActivity>()
         }
     }
 

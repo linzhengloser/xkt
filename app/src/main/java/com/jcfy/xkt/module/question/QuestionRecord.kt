@@ -10,13 +10,15 @@ data class QuestionRecord(
         val questionId: Int,
         val selectionIndexArray: ArrayList<Int> = arrayListOf(),
         var isShowAnswer: Boolean = true,
-        var isOpenEyeProtectionMode: Boolean = false
+        var isOpenEyeProtectionMode: Boolean = false,
+        var status: Int = 0 // 0 没做 1 对 2 错
 ) : Parcelable {
     constructor(source: Parcel) : this(
             source.readInt(),
             ArrayList<Int>().apply { source.readList(this, Int::class.java.classLoader) },
             1 == source.readInt(),
-            1 == source.readInt()
+            1 == source.readInt(),
+            source.readInt()
     )
 
     override fun describeContents() = 0
@@ -26,6 +28,7 @@ data class QuestionRecord(
         writeList(selectionIndexArray)
         writeInt((if (isShowAnswer) 1 else 0))
         writeInt((if (isOpenEyeProtectionMode) 1 else 0))
+        writeInt(status)
     }
 
     companion object {

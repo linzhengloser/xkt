@@ -69,7 +69,11 @@
         <!-- 错题 or 收藏 -->
         <activity android:name=".ui.activity.mine.WrongOrCollectionQuestionActivity"/>
 
+        <!-- 成绩 -->
         <activity android:name=".ui.activity.mine.AchievementActivity"/>
+
+        <!-- 关于我们 or 使用帮助 -->
+        <activity android:name=".ui.activity.HelpActivity"/>
 
 
     </application>

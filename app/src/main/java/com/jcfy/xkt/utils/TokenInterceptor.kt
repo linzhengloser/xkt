@@ -17,7 +17,7 @@ class TokenInterceptor : Interceptor {
         if (originRequest.body() is FormBody) {
             val originFormBody = originRequest.body() as FormBody
             for (index in 0 until originFormBody.size()) {
-                newFormBodyBuilder.add(originFormBody.encodedName(index), originFormBody.encodedValue(index))
+                newFormBodyBuilder.add(originFormBody.name(index), originFormBody.value(index))
             }
         }
         newFormBodyBuilder.add("token", UserUtils.user?.token)

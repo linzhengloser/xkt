@@ -43,7 +43,20 @@ open abstract class QuestionActivity : BaseActivity(), View.OnClickListener, Vie
      */
     protected var mIsShowAnswer = false
 
+    /**
+     * 当前题目索引
+     */
     protected var mCurrentQuestionIndex = 0
+
+    /**
+     * 答对的题目数量
+     */
+    protected var mRightQuestionCount: Int = 0
+
+    /**
+     * 答错的题目数量
+     */
+    protected var mWrongQuestionCount: Int = 0
 
     protected open val mContentViewLayoutId = 0
 
@@ -89,6 +102,7 @@ open abstract class QuestionActivity : BaseActivity(), View.OnClickListener, Vie
     protected open fun invalidateToolBar() {
         tv_total_question.text = "${this.mCurrentQuestionIndex + 1}/${mQuestionWrapper.questionCount}"
         sb_question_progress.progress = mCurrentQuestionIndex + 1
+        calculateQuestionCount()
     }
 
 
@@ -121,11 +135,41 @@ open abstract class QuestionActivity : BaseActivity(), View.OnClickListener, Vie
         }
     }
 
-    override fun onBackPressed() {
-        //提交做题记录
-
+    /**
+     *  验证是否答题
+     */
+    protected fun validateQuestion(): Boolean {
+        return mRightQuestionCount == 0 && mWrongQuestionCount == 0
     }
 
+    /**
+     * 计算题目对/错的数量
+     */
+    private fun calculateQuestionCount() {
+        if (mCurrentQuestionIndex == 0)
+            return
+        val currentQuestionRecord = mQuestionRecordList[mCurrentQuestionIndex - 1]
+        val currentQuestion = mQuestionWrapper.questionList[mCurrentQuestionIndex - 1]
+        when {
+            currentQuestionRecord.selectionIndexArray.isEmpty() -> currentQuestionRecord.status = 2
+            calculateAnswerIsRight(currentQuestion.answerlist, currentQuestionRecord) -> currentQuestionRecord.status = 1
+            else -> currentQuestionRecord.status = 2
+        }
+        mRightQuestionCount = mQuestionRecordList.count { it.status == 1 }
+        mWrongQuestionCount = mQuestionRecordList.count { it.status == 2 }
+    }
 
+    /**
+     * 计算答案是否是对的
+     */
+    private fun calculateAnswerIsRight(answerList: List<String>, questionRecord: QuestionRecord): Boolean {
+        questionRecord.selectionIndexArray.forEach {
+            val selectionAnswer = it.toString()
+            if (answerList.none { it == selectionAnswer }) {
+                return false
+            }
+        }
+        return true
+    }
 
 }

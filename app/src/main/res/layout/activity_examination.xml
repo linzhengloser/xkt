@@ -93,6 +93,7 @@
             android:layout_height="48dp"
             android:paddingLeft="14dp"
             android:paddingRight="14dp"
+            android:tag="close"
             app:layout_constraintBottom_toBottomOf="parent"
             android:background="@color/transparency"
             android:src="@drawable/selector_exercise_eye_protection_mode"/>

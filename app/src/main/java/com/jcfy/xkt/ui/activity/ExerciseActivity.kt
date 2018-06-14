@@ -26,10 +26,6 @@ import java.util.concurrent.TimeUnit
 
 class ExerciseActivity : QuestionActivity(), View.OnClickListener {
 
-    private var mRightQuestionCount: Int = 0
-
-    private var mWrongQuestionCount: Int = 0
-
     private lateinit var mAutomaticDisposable: Disposable
 
     override val mType: Int
@@ -138,6 +134,29 @@ class ExerciseActivity : QuestionActivity(), View.OnClickListener {
                         ToastUtils.showToast("${if (it.flag == 2) "取消收藏" else "收藏"}失败")
                     }
                 }, ApiConsumer())
+    }
+
+    /**
+     * 保存练习记录
+     */
+    override fun finish() {
+        if (mWrongQuestionCount == 0 && mRightQuestionCount == 0)
+            super.finish()
+
+        val api = Api.createApi(ExerciseApi::class)
+        api.saveDoQuestionRecord("1", "2,3,4")
+                .map(ApiFunction())
+                .doFinally { hideLoadingDialog() }
+                .doOnSubscribe { showLoadingDialog() }
+                .observeOn(androidScheduler)
+                .autoDisposable(mScopeProvider)
+                .subscribe(Consumer {
+                    ToastUtils.showToast("练习记录保存成功")
+                    super.finish()
+                }, Consumer {
+                    ToastUtils.showToast("练习记录保存失败")
+                    super.finish()
+                })
     }
 
 }

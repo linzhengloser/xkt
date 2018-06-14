@@ -36,7 +36,7 @@ class MyApplication : LibraryApplication() {
                 TokenInterceptor(),
                 HttpLoggingInterceptor(HttpLoggingInterceptor.Logger {
                     Timber.tag("OkHttp").d(it)
-                }).setLevel(HttpLoggingInterceptor.Level.BODY)
+                }).setLevel(if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY else HttpLoggingInterceptor.Level.NONE)
         )
     }
 

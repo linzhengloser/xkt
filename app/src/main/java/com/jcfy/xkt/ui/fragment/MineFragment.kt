@@ -11,13 +11,13 @@ import android.view.ViewGroup
 import com.jcfy.xkt.R
 import com.jcfy.xkt.base.BaseListFragment
 import com.jcfy.xkt.module.Mine
-import com.jcfy.xkt.ui.activity.MessageCenterActivity
-import com.jcfy.xkt.ui.activity.RechargeCenterActivity
-import com.jcfy.xkt.ui.activity.SettingActivity
+import com.jcfy.xkt.ui.activity.*
 import com.jcfy.xkt.ui.activity.mine.BasicInformationActivity
 import com.jcfy.xkt.ui.dialog.ShareDialog
 import com.jcfy.xkt.ui.multitype.MineHeaderItemViewBinder
 import com.jcfy.xkt.ui.multitype.MineItemViewBinder
+import com.jcfy.xkt.utils.UserUtils
+import com.lz.baselibrary.utils.ToastUtils
 import com.lz.baselibrary.view.RefreshListener
 import kotlinx.android.synthetic.main.fragment_mine.*
 import me.drakeet.multitype.register
@@ -39,6 +39,8 @@ const val SHARE = "分享"
 
 const val RECHARGE_CENTER = "充值中心"
 
+const val USE_HELP = "使用帮助"
+
 class MineFragment : BaseListFragment(), RefreshListener {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -49,7 +51,7 @@ class MineFragment : BaseListFragment(), RefreshListener {
             Mine(R.drawable.mine_basic_information, BASIC_INFORMATION),
             Mine(R.drawable.mine_recharge_center, RECHARGE_CENTER),
             Mine(R.drawable.mine_message_center, MESSAGE_CENTER),
-            Mine(R.drawable.mine_help, "使用帮助"),
+            Mine(R.drawable.mine_help, USE_HELP),
             Mine(R.drawable.mine_opinion, "意见反馈"),
             Mine(R.drawable.mine_contact, "联系我们"),
             Mine(R.drawable.mine_share, SHARE),
@@ -91,18 +93,24 @@ class MineFragment : BaseListFragment(), RefreshListener {
                 super.handleMessage(msg)
                 srl_mine.refreshComplete()
             }
-        }.sendEmptyMessageDelayed(1, 2000)
+        }.sendEmptyMessageDelayed(1, 1000)
     }
 
 
     @Subscribe
     public fun onMessageEvent(mine: Mine) {
+        if (!UserUtils.isLogin) {
+            ToastUtils.showToast("请先登录")
+            startActivity<LoginActivity>()
+            return
+        }
         when (mine.title) {
             BASIC_INFORMATION -> startActivity(Intent(context, BasicInformationActivity::class.java))
             MESSAGE_CENTER -> startActivity(Intent(context, MessageCenterActivity::class.java))
             SHARE -> ShareDialog().show(childFragmentManager)
             SETTING -> startActivity<SettingActivity>()
             RECHARGE_CENTER -> startActivity<RechargeCenterActivity>()
+            USE_HELP -> startActivity<HelpActivity>()
         }
     }
 

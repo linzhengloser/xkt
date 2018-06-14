@@ -1,9 +1,6 @@
 package com.jcfy.xkt.api
 
-import com.jcfy.xkt.module.mine.AchievementWrapper
-import com.jcfy.xkt.module.mine.HelpWrapper
-import com.jcfy.xkt.module.mine.RechargeWrapper
-import com.jcfy.xkt.module.mine.ScheduleWrapper
+import com.jcfy.xkt.module.mine.*
 import io.reactivex.Observable
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -47,14 +44,14 @@ interface MineApi {
 
     /**
      * 消息中心
+     * @Field("type") type: Int,
      */
-    @POST("mine/voucherCenter.do")
+    @POST("mine/moreMsg.do")
     @FormUrlEncoded
     fun getMessageCenter(
-            @Field("type") type: Int,
             @Field(PAGE_KEY) page: String = PAGE_DEFAULT_VALUE,
             @Field(LIMIT_KEY) limit: String = LIMIT_DEFAULT_VALUE
-    ): Observable<Response<Any>>
+    ): Observable<Response<MessageWrapper>>
 
     /**
      * 使用帮助
@@ -65,6 +62,7 @@ interface MineApi {
     /**
      * 关于我们
      */
+    @POST("mine/aboutUs.do")
     fun getAboutUs(): Observable<Response<HelpWrapper>>
 
 }

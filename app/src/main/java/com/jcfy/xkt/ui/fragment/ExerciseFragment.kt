@@ -5,8 +5,12 @@ import android.view.View
 import com.jcfy.xkt.api.ExerciseApi
 import com.jcfy.xkt.module.ExerciseExaminationMenu
 import com.jcfy.xkt.ui.activity.ChapterExerciseActivity
+import com.jcfy.xkt.ui.activity.LoginActivity
+import com.jcfy.xkt.utils.UserUtils
 import com.lz.baselibrary.network.Api
+import com.lz.baselibrary.utils.ToastUtils
 import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.support.v4.startActivity
 
 /**
  * @author linzheng
@@ -20,6 +24,11 @@ class ExerciseFragment : ExerciseExaminationFragment() {
     }
 
     override fun onItemClickEvent(event: ExerciseExaminationMenu) {
+        if (!UserUtils.isLogin) {
+            ToastUtils.showToast("请先登录")
+            startActivity<LoginActivity>()
+            return
+        }
         if (event.title == CHAPTER_EXERCISE) {
             //章节
             context?.startActivity<ChapterExerciseActivity>("type" to mLevel)
@@ -37,7 +46,8 @@ class ExerciseFragment : ExerciseExaminationFragment() {
             COLLECTION_EXERCISE -> api.getCollectionQuestionList(mLevel)
             else -> null
         }
-        handleQuestionList(observable!!, event.title)
+        if (observable != null)
+            handleQuestionList(observable, event.title)
     }
 
     companion object {
